@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary SEO -->
+  <title>When Does Personality Composition Matter for Multi-Agent LLM Teams?</title>
+  <meta name="description"
+        content="A systematic study of personality prompting in multi-agent LLM teams across coding, research, and bargaining. Low agreeableness shifts communication the same way everywhere, but task structure decides whether outcomes degrade: structured code buffers the effect, unstructured research and competitive bargaining do not.">
+  <meta name="keywords"
+        content="multi-agent LLM, personality prompting, Big Five, agreeableness, LLM agents, agent teams, MultiAgentBench, Claude, GPT-4o, Grok-3, DeepSeek, artifact-mediated buffering, person-environment fit, negotiation agents, multi-agent collaboration, COLM 2026">
+  <meta name="author" content="Aryan Keluskar, Amrita Bhattacharjee, Huan Liu">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://multi-agent-llm-teams.github.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="When Does Personality Composition Matter for Multi-Agent LLM Teams?">
+  <meta property="og:description"
+        content="Low agreeableness shifts agent communication identically across domains, but only unstructured tasks (research, bargaining) see outcomes degrade. Structured code output buffers the effect.">
+  <meta property="og:url" content="https://multi-agent-llm-teams.github.io/">
+  <meta property="og:site_name" content="When Does Personality Composition Matter for Multi-Agent LLM Teams?">
+  <meta property="og:image" content="https://multi-agent-llm-teams.github.io/static/images/fig7_task_success.png">
+  <meta property="og:image:alt" content="Task outcomes in coding across conditions and models under personality prompting.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="When Does Personality Composition Matter for Multi-Agent LLM Teams?">
+  <meta name="twitter:description"
+        content="Personality prompting reshapes agent communication everywhere, but task structure decides whether it changes objective outcomes.">
+  <meta name="twitter:image" content="https://multi-agent-llm-teams.github.io/static/images/fig7_task_success.png">
+  <meta name="citation_title" content="When Does Personality Composition Matter for Multi-Agent LLM Teams?">
+  <meta name="citation_author" content="Keluskar, Aryan">
+  <meta name="citation_author" content="Bhattacharjee, Amrita">
+  <meta name="citation_author" content="Liu, Huan">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_arxiv_id" content="2606.27443">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2606.27443">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" type="image/webp" href="./static/images/favicon.webp">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- Structured data: Scholarly Article (AI-SEO / rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "When Does Personality Composition Matter for Multi-Agent LLM Teams?",
+    "name": "When Does Personality Composition Matter for Multi-Agent LLM Teams?",
+    "author": [
+      { "@type": "Person", "name": "Aryan Keluskar", "affiliation": { "@type": "Organization", "name": "Arizona State University" } },
+      { "@type": "Person", "name": "Amrita Bhattacharjee", "affiliation": { "@type": "Organization", "name": "Arizona State University" } },
+      { "@type": "Person", "name": "Huan Liu", "affiliation": { "@type": "Organization", "name": "Arizona State University" } }
+    ],
+    "datePublished": "2026",
+    "publisher": { "@type": "Organization", "name": "arXiv" },
+    "url": "https://multi-agent-llm-teams.github.io/",
+    "sameAs": "https://arxiv.org/abs/2606.27443",
+    "image": "https://multi-agent-llm-teams.github.io/static/images/fig7_task_success.png",
+    "keywords": "multi-agent LLM, personality prompting, Big Five, agreeableness, LLM agents, MultiAgentBench, artifact-mediated buffering",
+    "abstract": "Personality prompting shapes how large language models communicate, yet whether those shifts change objective task outcomes has not been tested directly. We investigate whether personality composition matters for multi-agent team performance by manipulating personality traits across frontier LLMs on three task domains: structured coding, open-ended research collaboration, and competitive bargaining. We find that personality effects depend critically on task structure. In coding tasks, low agreeableness leads to large communication shifts that have little effect on milestone completion. In open-ended collaboration and bargaining, the same manipulation substantially degrades performance."
+  }
+  </script>
+
+  <!-- Structured data: FAQ (AI-SEO / featured snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does giving an LLM agent a personality change its task performance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on task structure. Personality prompting reliably shifts how agents communicate across every domain, but whether that reaches objective outcomes depends on the output medium. In structured coding tasks, low agreeableness barely changes milestone completion. In open-ended research and competitive bargaining, the same manipulation substantially degrades performance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is artifact-mediated buffering?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Artifact-mediated buffering is the finding that a formal deliverable with syntactic and semantic constraints (such as a code file) insulates task outcomes from degraded communication. Because the code must satisfy the same constraints regardless of how hostile the agents were, process degradation is filtered out of the final artifact. Unstructured outputs like research ideas or negotiation offers have no such constraint, so communication degradation passes straight through to the outcome."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is agreeableness the personality trait that matters most for LLM agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Among the Big Five traits, only agreeableness produces the large communication shift. Conscientiousness and openness ablations leave communication near baseline. Frontier LLMs are trained via RLHF and constitutional methods to be cooperative, so high agreeableness saturates while low agreeableness pushes against the training prior and produces large effects. This makes personality prompting mainly a tool for inducing adversarial behavior, not for enhancing cooperation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do negatively loaded personality adjectives inflate the measured effect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Partly. A neutral paraphrase that targets the same behavioral intent ('direct, candid, skeptical of consensus, prefers efficiency over diplomacy') attenuates the effect and removes the cross-model convergence, but a model-specific residual persists. Studies using loaded Goldberg adjectives may be measuring prompt-toxicity sensitivity in addition to genuine personality-to-behavior mappings."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Umami analytics -->
+  <script defer src="https://umami-psi-henna.vercel.app/script.js" data-website-id="48d571d5-3df3-4b0b-aa96-21974dd3bced"></script>
+  <script>
+  (function () {
+    var SEL = 'a, button, [role="button"], input[type="submit"], input[type="button"]';
+    function label(el, isLink) {
+      var raw = el.getAttribute('aria-label') || el.innerText || el.value || el.getAttribute('title') || (isLink ? (el.getAttribute('href') || '') : '') || el.tagName.toLowerCase();
+      return raw.replace(/\s+/g, ' ').trim().slice(0, 40);
+    }
+    document.addEventListener('click', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest(SEL) : null;
+      if (!el || !window.umami) return;
+      var isLink = el.tagName === 'A';
+      var name = (isLink ? 'link: ' : 'button: ') + label(el, isLink);
+      window.umami.track(name.slice(0, 50), {
+        type: isLink ? 'link' : 'button',
+        text: (el.innerText || el.value || '').replace(/\s+/g, ' ').trim().slice(0, 200),
+        href: isLink ? el.href : undefined,
+        id: el.id || undefined,
+        aria: el.getAttribute('aria-label') || undefined,
+        path: window.location.pathname
+      });
+    }, true);
+  })();
+  </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="#abstract">Abstract</a>
+      <a class="navbar-item" href="#findings">Key Findings</a>
+      <a class="navbar-item" href="#taxonomy">Task Taxonomy</a>
+      <a class="navbar-item" href="#results">Results</a>
+      <a class="navbar-item" href="#faq">FAQ</a>
+      <a class="navbar-item" href="#BibTeX">Cite</a>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">When Does Personality Composition Matter for Multi-Agent LLM Teams?</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://aryankeluskar.com">Aryan Keluskar</a>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=wKM3aMoAAAAJ">Amrita Bhattacharjee</a>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Dzf0MJcAAAAJ">Huan Liu</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">School of Computing &amp; AI, Arizona State University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2606.27443"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2606.27443"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/multi-agent-llm-teams"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>Cite</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Hero teaser figure + one-line takeaway -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/hero_buffering.png"
+           alt="Artifact-mediated buffering: low agreeableness shifts communication the same way in every domain, but structured code output buffers the outcome while unstructured research and bargaining outcomes degrade."
+           style="width:100%;max-width:960px;display:block;margin:0 auto;">
+      <h2 class="subtitle has-text-centered" style="margin-top:1.5rem;">
+        The <b>same</b> low-agreeableness prompt shifts agent communication identically
+        in every domain (<span class="dnerf">&phi;: 0.44 &rarr; 0.93</span>) &mdash; but only
+        <b style="color:#d95f02;">unstructured</b> tasks see outcomes degrade. A
+        <b style="color:#1f77b4;">structured</b> code artifact buffers the effect.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Personality prompting shapes how large language models communicate, yet whether those
+            shifts change objective task outcomes has not been tested directly. Prior work shows
+            that agents prompted with low agreeableness produce adversarial language, while those
+            prompted with high agreeableness become cooperative, but the relationship between
+            communication style and task performance has not been systematically examined across
+            multiple domains.
+          </p>
+          <p>
+            In this work, we investigate whether personality composition matters for
+            multi-agent team performance by manipulating personality traits across frontier LLMs on
+            three task domains: structured coding, open-ended research collaboration,
+            and competitive bargaining. We find that personality effects depend critically on
+            task structure. In coding tasks, low agreeableness leads to large communication shifts
+            that have little effect on milestone completion. In open-ended collaboration and
+            bargaining, the same manipulation substantially degrades performance. We discuss
+            implications for multi-agent system design and the limits of personality manipulation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<!-- Key Findings / TL;DR -->
+<section class="section" id="findings" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Key Findings</h2>
+      </div>
+    </div>
+    <div class="tldr-grid">
+      <div class="tldr-card">
+        <h4>1. Communication always shifts</h4>
+        <p>Low agreeableness drives every model to a disagreement-dominated profile
+           (exploration fraction <span class="dnerf">&phi; &asymp; 0.93</span>), with large effect
+           sizes (Cohen's <i>d</i> from &minus;1.17 to &minus;12.39).</p>
+      </div>
+      <div class="tldr-card preserved">
+        <h4>2. Structured coding is buffered</h4>
+        <p>Despite the massive communication shift, milestone completion is essentially unchanged for
+           3 of 4 models (Claude <span class="cell-preserved">12.1&rarr;12.4</span>, <i>d</i>=0.06). The
+           code artifact filters out process degradation.</p>
+      </div>
+      <div class="tldr-card degraded">
+        <h4>3. Research &amp; bargaining are exposed</h4>
+        <p>The same prompt cuts research milestones by up to 66% and collapses bargaining agreement
+           from ~40% to <span class="cell-degraded">&le;1%</span>. Unstructured output has no
+           constraint to anchor convergence.</p>
+      </div>
+      <div class="tldr-card">
+        <h4>4. Only agreeableness matters</h4>
+        <p>Conscientiousness and openness ablations leave communication near baseline. High
+           agreeableness is null (LLMs are already trained to be cooperative); low agreeableness
+           pushes against the prior.</p>
+      </div>
+      <div class="tldr-card">
+        <h4>5. Loaded adjectives inflate effects</h4>
+        <p>A neutral paraphrase attenuates the shift and removes cross-model convergence, but a
+           model-specific residual persists. Loaded Goldberg adjectives partly measure prompt-toxicity
+           sensitivity.</p>
+      </div>
+      <div class="tldr-card">
+        <h4>6. Design recommendation</h4>
+        <p>Deploy low agreeableness as a <b>bounded, lead-position critic</b> rather than a team-wide
+           trait. A lead challenger can match baseline; non-lead challengers hurt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- The core idea: buffering -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Artifact-Mediated Buffering</h2>
+        <div class="content has-text-justified">
+          <p>
+            Low agreeableness shifts communication the same way in every domain, but whether that shift
+            reaches objective outcomes depends on the <b>output medium</b>. A code file must satisfy
+            syntactic and semantic constraints regardless of how the agents communicated, so its
+            outcomes stay near baseline. Unstructured text (research ideas, negotiation offers) has no
+            such constraint, and the same degradation passes through to the outcome.
+          </p>
+        </div>
+        <div class="takeaway has-text-left">
+          <p><b>Preserved (blue):</b> structured code &rarr; milestones hold near baseline.</p>
+          <p><b>Exposed (orange):</b> unstructured research &amp; bargaining &rarr; outcomes degrade sharply.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Task Taxonomy -->
+<section class="section" id="taxonomy" style="padding-top:0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Task Taxonomy</h2>
+        <div class="content has-text-justified">
+          <p>
+            Two dimensions determine how communication quality can reach the outcome:
+            <b>artifact structure</b> (does the deliverable have formal constraints?) and
+            <b>goal alignment</b> (do agents share or oppose objectives?). Our three domains fill
+            three of the four cells; the high-structure competitive cell has no natural multi-agent
+            analogue.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="results-table" style="max-width:720px; margin:auto;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Cooperative<br><span style="font-weight:normal;font-size:0.85em;">shared objective</span></th>
+            <th>Competitive<br><span style="font-weight:normal;font-size:0.85em;">opposing objectives</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>High structure</b></td>
+            <td style="background:var(--panel-blue);">
+              <b>Coding</b><br><span class="cell-preserved">milestones robust</span>
+              <br><span style="font-size:0.82em;">d=0.06, 3/4 models</span>
+            </td>
+            <td style="color:#999;">no natural analogue<br><span style="font-size:0.82em;">(out of scope)</span></td>
+          </tr>
+          <tr>
+            <td><b>Low structure</b></td>
+            <td style="background:var(--panel-orange);">
+              <b>Research</b><br><span class="cell-degraded">milestones &minus;66%</span>
+              <br><span style="font-size:0.82em;">3/3 models</span>
+            </td>
+            <td style="background:var(--panel-orange);">
+              <b>Bargaining</b><br><span class="cell-degraded">agreement &rarr; 0%</span>
+              <br><span style="font-size:0.82em;">3/3 models</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="figure-caption" style="max-width:720px;margin:0.75rem auto 0;">
+      Under low agreeableness, outcomes in the blue cell stay near baseline while outcomes in the
+      orange cells drop.
+    </p>
+  </div>
+</section>
+
+
+<!-- Methodology -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Methodology</h2>
+        <div class="content has-text-justified">
+          <p>
+            We shape personality with <b>Goldberg's bipolar adjective markers</b> for the Big Five,
+            following the validated psychometric protocol of Serapio-García et al. (2025). Each
+            dimension is operationalized through seven adjective pairs crossed with 9-level linguistic
+            qualifiers. Our primary conditions are <b>low-A</b> (level 2) and <b>high-A</b> (level 8),
+            prepended to each agent's system prompt.
+          </p>
+          <p>
+            <i>Example (low-A):</i> &ldquo;You are <b>very</b> unkind, <b>very</b> uncooperative,
+            <b>very</b> selfish, <b>very</b> distrustful, <b>very</b> cold, <b>very</b> harsh,
+            <b>very</b> unsympathetic.&rdquo;
+          </p>
+        </div>
+        <img src="./static/images/2x2_pole_exp.png"
+             alt="Personality prompt construction: crossing a qualifier level with the pole of each Big Five adjective pair."
+             style="max-width:620px;width:100%;">
+        <p class="figure-caption">
+          A prompt is constructed by crossing a qualifier level (left) with the corresponding pole of
+          each adjective pair (right). Bold levels are our primary conditions (levels 2 and 8).
+        </p>
+        <div class="content has-text-justified" style="margin-top:1.5rem;">
+          <p>
+            We measure communication with an adaptation of <b>Bales' Interaction Process Analysis</b>,
+            classifying each message segment into questions, disagreements, suggestions, and
+            acknowledgments (GPT-4o-mini, multi-label). The <b>communication state
+            <span class="dnerf">&phi;</span></b> is the fraction of acts devoted to exploration
+            (questions, disagreements, suggestions) rather than convergence (acknowledgments):
+          </p>
+          <p class="has-text-centered">
+            <span class="dnerf" style="font-size:1.15em;">
+              &phi; = (c<sub>Q</sub> + c<sub>D</sub> + c<sub>S</sub>) /
+              (c<sub>Q</sub> + c<sub>D</sub> + c<sub>S</sub> + c<sub>A</sub>)
+            </span>
+          </p>
+          <p>
+            We evaluate <b>Claude Sonnet 4.5, GPT-4o, Grok-3, and DeepSeek V3.1</b> on tasks drawn
+            from <b>MultiAgentBench</b> spanning coding (3 agents), research (5 agents), and
+            buyer&ndash;seller bargaining (2 agents).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Results -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+      </div>
+    </div>
+
+    <!-- RQ1: communication -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Personality reshapes communication (all models)</h3>
+        <div class="table-scroll">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Model</th><th>Condition</th><th>&phi;</th>
+                <th>r<sub>q</sub></th><th>r<sub>d</sub></th><th>r<sub>s</sub></th><th>r<sub>ack</sub></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-row"><td colspan="7">Claude Sonnet 4.5</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>.77</td><td>.11</td><td>.02</td><td>.64</td><td>.23</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td>.68</td><td>.20</td><td>.01</td><td>.48</td><td>.32</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">.93</td><td>.07</td><td>.51</td><td>.36</td><td>.07</td></tr>
+              <tr class="group-row"><td colspan="7">GPT-4o</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>.44</td><td>.15</td><td>.00</td><td>.29</td><td>.56</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td>.42</td><td>.18</td><td>.00</td><td>.24</td><td>.58</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">.93</td><td>.10</td><td>.45</td><td>.39</td><td>.07</td></tr>
+              <tr class="group-row"><td colspan="7">Grok-3</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>.44</td><td>.22</td><td>.00</td><td>.22</td><td>.56</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td>.43</td><td>.16</td><td>.00</td><td>.27</td><td>.57</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">.93</td><td>.05</td><td>.51</td><td>.37</td><td>.07</td></tr>
+              <tr class="group-row"><td colspan="7">DeepSeek V3.1</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>.68</td><td>.13</td><td>.03</td><td>.52</td><td>.32</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td>.80</td><td>.13</td><td>.01</td><td>.69</td><td>.17</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">.95</td><td>.07</td><td>.10</td><td>.77</td><td>.05</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption">
+          Communication state (&phi;) and act rates. Low-A drives Claude, GPT-4o, and Grok-3 to a
+          disagreement-dominated profile; DeepSeek converges via suggestions. High-A produces minimal
+          shifts across all models.
+        </p>
+      </div>
+    </div>
+
+    <!-- Trait ablation figure -->
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <img src="./static/images/fig_trait_ablation_phi.png"
+             alt="Trait ablation on coding tasks: only low agreeableness produces a characteristic communication shift across all models."
+             style="width:100%;">
+        <p class="figure-caption">
+          Trait ablation on coding tasks. Only low-A produces a characteristic shift across all
+          models; conscientiousness and openness stay near baseline.
+        </p>
+      </div>
+    </div>
+
+    <!-- RQ2: cross-domain -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">The same manipulation, three different outcomes</h3>
+        <div class="table-scroll">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Domain</th><th>Model</th>
+                <th>&phi;<sub>base</sub></th><th>&phi;<sub>lowA</sub></th>
+                <th>Outcome<sub>base</sub></th><th>Outcome<sub>lowA</sub></th><th>Cohen's d</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-row"><td colspan="7">Coding &mdash; milestone counts (structured, cooperative)</td></tr>
+              <tr><td>Coding</td><td>Claude</td><td>.77</td><td>.93</td><td>12.1</td><td class="cell-preserved">12.4</td><td>0.06</td></tr>
+              <tr><td>Coding</td><td>GPT-4o</td><td>.44</td><td>.93</td><td>10.9</td><td class="cell-preserved">9.5</td><td>0.51</td></tr>
+              <tr><td>Coding</td><td>Grok-3</td><td>.44</td><td>.93</td><td>14.4</td><td>10.9</td><td>1.69*</td></tr>
+              <tr><td>Coding</td><td>DeepSeek</td><td>.68</td><td>.95</td><td>10.7</td><td class="cell-preserved">8.8</td><td>0.43</td></tr>
+              <tr class="group-row"><td colspan="7">Research &mdash; milestone counts (unstructured, cooperative)</td></tr>
+              <tr><td>Research</td><td>Claude</td><td>&mdash;</td><td>&mdash;</td><td>10.5</td><td class="cell-preserved">10.8</td><td>0.06</td></tr>
+              <tr><td>Research</td><td>GPT-4o</td><td>.57</td><td>.81</td><td>10.5</td><td class="cell-degraded">3.5</td><td>1.41*</td></tr>
+              <tr><td>Research</td><td>Grok-3</td><td>.58</td><td>.93</td><td>17.0</td><td class="cell-degraded">11.8</td><td>1.30*</td></tr>
+              <tr><td>Research</td><td>DeepSeek</td><td>.72</td><td>.92</td><td>9.7</td><td class="cell-degraded">5.8</td><td>0.78*</td></tr>
+              <tr class="group-row"><td colspan="7">Bargaining &mdash; agreement rate (unstructured, competitive)</td></tr>
+              <tr><td>Bargaining</td><td>Claude</td><td colspan="2">n/a</td><td>40%</td><td class="cell-degraded">0%</td><td>&mdash;</td></tr>
+              <tr><td>Bargaining</td><td>GPT-4o</td><td colspan="2">n/a</td><td>37%</td><td class="cell-degraded">1%</td><td>&mdash;</td></tr>
+              <tr><td>Bargaining</td><td>DeepSeek</td><td colspan="2">n/a</td><td>18%</td><td class="cell-degraded">0%</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption">
+          Cross-domain personality&ndash;task alignment under low-A. In coding, large &phi; shifts
+          (.44&rarr;.93) produce null outcome effects for 3/4 models. In research and bargaining,
+          outcomes degrade substantially. <span style="white-space:nowrap;">*p&lt;0.01.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- outcomes figure -->
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <img src="./static/images/fig7_task_success.png"
+             alt="Task outcomes in coding across conditions and models: low agreeableness degrades planning quality but leaves milestone completion largely unchanged."
+             style="width:100%;">
+        <p class="figure-caption">
+          Task outcomes in coding across conditions and models. Low agreeableness degrades planning
+          quality but leaves milestone completion largely unchanged.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bargaining -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Bargaining: personality decides whether agreement happens at all</h3>
+        <div class="content has-text-justified">
+          <p>
+            Low-A collapses acceptance to &le;1% across all three models; high-A roughly doubles the
+            baseline. The low-A agents do not simply refuse, though: they move off their opening
+            offer and exchange counteroffers at near-baseline rates (GPT-4o revises in 90% of runs vs.
+            95% at baseline) yet call <code>accept_offer</code> in only 1% of runs. Agreeableness acts
+            on the final accept decision, not on whether agents negotiate.
+          </p>
+        </div>
+        <div class="table-scroll">
+          <table class="results-table" style="max-width:640px;margin:auto;">
+            <thead>
+              <tr><th>Model</th><th>Condition</th><th>Accept %</th><th>95% CI</th><th>Rounds</th></tr>
+            </thead>
+            <tbody>
+              <tr class="group-row"><td colspan="5">GPT-4o</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>37</td><td>[28, 47]</td><td>3.2</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td class="cell-preserved">71</td><td>[61, 79]</td><td>2.7</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">1</td><td>[0, 5]</td><td>3.3</td></tr>
+              <tr><td>&nbsp;</td><td>Neutral</td><td>16</td><td>[10, 24]</td><td>3.6</td></tr>
+              <tr class="group-row"><td colspan="5">DeepSeek V3.1</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>18</td><td>[12, 27]</td><td>3.1</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td>26</td><td>[18, 35]</td><td>2.3</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">0</td><td>[0, 4]</td><td>2.4</td></tr>
+              <tr><td>&nbsp;</td><td>Neutral</td><td>7</td><td>[3, 14]</td><td>2.6</td></tr>
+              <tr class="group-row"><td colspan="5">Claude Sonnet 4.5</td></tr>
+              <tr><td>&nbsp;</td><td>Baseline</td><td>40</td><td>[22, 61]</td><td>3.4</td></tr>
+              <tr><td>&nbsp;</td><td>High-A</td><td class="cell-preserved">80</td><td>[58, 92]</td><td>2.5</td></tr>
+              <tr><td>&nbsp;</td><td>Low-A</td><td class="cell-degraded">0</td><td>[0, 16]</td><td>3.4</td></tr>
+              <tr><td>&nbsp;</td><td>Neutral</td><td>20</td><td>[6, 51]</td><td>3.2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption" style="max-width:640px;margin:0.75rem auto 0;">
+          Bargaining acceptance rates. Low-A collapses acceptance to &le;1% across all three models
+          while high-A approximately doubles it. The neutral-paraphrase condition reduces the effect
+          but preserves the direction.
+        </p>
+      </div>
+    </div>
+
+    <!-- RQ3 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Are effects inflated by negatively loaded adjectives?</h3>
+        <div class="content has-text-justified">
+          <p>
+            To separate a genuine trait effect from prompt-valence artifacts, we ran a
+            <b>neutral paraphrase</b>: &ldquo;You are direct, candid, independent-minded, skeptical of
+            consensus, and prefer efficiency over diplomacy.&rdquo; Under Goldberg low-A all models
+            converge (&phi; span = 0.02); under the neutral paraphrase they diverge (span = 0.45), and
+            <b>no model generates disagreements</b> (&delta; &le; 0.15). The degradation is
+            <i>amplified</i> by loaded adjectives but not solely caused by them &mdash; a
+            model-specific residual persists once valence is controlled. The practical takeaway: use
+            neutral behavioral descriptors rather than negatively valenced personality adjectives if
+            you want predictable, model-specific trait effects.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FAQ (AI-SEO) -->
+<section class="section" id="faq">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>Does giving an LLM agent a personality change its task performance?</h3>
+          <p>It depends on task structure. Personality prompting reliably shifts <i>how</i> agents
+          communicate across every domain, but whether that reaches objective outcomes depends on the
+          output medium. In structured coding tasks, low agreeableness barely changes milestone
+          completion. In open-ended research and competitive bargaining, the same manipulation
+          substantially degrades performance.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What is artifact-mediated buffering?</h3>
+          <p>It is the finding that a formal deliverable with syntactic and semantic constraints (such
+          as a code file) insulates task outcomes from degraded communication. The code must satisfy
+          the same constraints regardless of how hostile the agents were, so process degradation is
+          filtered out of the final artifact. Unstructured outputs like research ideas or negotiation
+          offers have no such constraint, so communication degradation passes straight through.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Why is agreeableness the trait that matters most?</h3>
+          <p>Among the Big Five, only agreeableness produces the large communication shift.
+          Conscientiousness and openness ablations leave communication near baseline. Frontier LLMs are
+          trained via RLHF and constitutional methods to be cooperative, so high agreeableness
+          saturates while low agreeableness pushes against the training prior. Personality prompting is
+          therefore mainly a tool for inducing adversarial behavior, not for enhancing cooperation.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How should I use personality in a production multi-agent system?</h3>
+          <p>Deploy low agreeableness as a bounded, lead-position critic rather than a team-wide trait.
+          A lead-position challenger can match or slightly exceed baseline (e.g., GPT-4o research 9.70
+          with a lead challenger vs. 3.53 for an all-low-A team vs. 10.47 baseline), whereas non-lead
+          challengers can hurt. Avoid negatively valenced adjectives if you want predictable,
+          model-specific effects.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Which models and benchmarks were used?</h3>
+          <p>Claude Sonnet 4.5, GPT-4o, Grok-3, and DeepSeek V3.1, evaluated on coding, research, and
+          buyer&ndash;seller bargaining tasks from MultiAgentBench. Communication acts were classified
+          with GPT-4o-mini and cross-checked with an independent second judge (Kimi K2.6).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{keluskar2026personality,
+  author  = {Keluskar, Aryan and Bhattacharjee, Amrita and Liu, Huan},
+  title   = {When Does Personality Composition Matter for Multi-Agent LLM Teams?},
+  journal = {arXiv preprint arXiv:2606.27443},
+  year    = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://arxiv.org/pdf/2606.27443">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/multi-agent-llm-teams" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p class="author-note">
+            &copy; 2026 Aryan Keluskar, Amrita Bhattacharjee, Huan Liu &mdash; School of Computing
+            &amp; AI, Arizona State University.
+          </p>
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+            Attribution-ShareAlike 4.0 International License</a>. The website template is borrowed from
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

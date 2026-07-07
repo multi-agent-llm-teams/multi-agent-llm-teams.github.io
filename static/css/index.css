@@ -1,0 +1,242 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-video-column {
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+/* ---- Additions for the paper page ---- */
+
+/* Colorblind-safe palette matching the paper: blue = preserved, orange = degraded */
+:root {
+  --cb-blue: #1f77b4;
+  --cb-orange: #d95f02;
+  --panel-blue: #deebf7;
+  --panel-orange: #fde7d9;
+  --panel-gray: #eeeeee;
+}
+
+.takeaway {
+  background: #f5f5f5;
+  border-left: 5px solid hsl(204, 86%, 53%);
+  border-radius: 6px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.takeaway p:last-child { margin-bottom: 0; }
+
+.tldr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+.tldr-card {
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+}
+.tldr-card h4 {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+.tldr-card.preserved { border-top: 4px solid var(--cb-blue); }
+.tldr-card.degraded  { border-top: 4px solid var(--cb-orange); }
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 0.5rem 0 0.75rem;
+}
+.results-table th, .results-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #e4e4e4;
+  text-align: center;
+}
+.results-table thead th {
+  border-bottom: 2px solid #333;
+  font-family: 'Google Sans', sans-serif;
+}
+.results-table td:first-child, .results-table th:first-child { text-align: left; }
+.results-table tbody tr:hover { background: #fafafa; }
+.results-table .group-row td {
+  background: #f7f7f7;
+  font-weight: bold;
+  text-align: left;
+}
+.cell-preserved { color: var(--cb-blue); font-weight: 600; }
+.cell-degraded  { color: var(--cb-orange); font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+
+.figure-caption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.faq-item { margin-bottom: 1.2rem; }
+.faq-item h3 {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+
+.author-note {
+  font-size: 0.9rem;
+  color: #666;
+}
