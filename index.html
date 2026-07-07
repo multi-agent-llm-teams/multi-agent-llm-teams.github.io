@@ -121,7 +121,8 @@
   </script>
 
   <!-- Umami analytics -->
-  <script defer src="https://umami-psi-henna.vercel.app/script.js" data-website-id="48d571d5-3df3-4b0b-aa96-21974dd3bced" data-domains="multi-agent-llm-teams.github.io"></script>
+  <!-- src + website id are injected at deploy from GitHub Actions repo variables (see .github/workflows/pages.yml). A fork without those variables set tracks nothing. -->
+  <script defer src="__UMAMI_SCRIPT_URL__" data-website-id="__UMAMI_WEBSITE_ID__"></script>
   <script>
   (function () {
     var SEL = 'a, button, [role="button"], input[type="submit"], input[type="button"]';
