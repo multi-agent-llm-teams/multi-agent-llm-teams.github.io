@@ -180,9 +180,9 @@
             <span class="author-block">
               <a href="https://www.linkedin.com/in/aryankeluskar/">Aryan Keluskar</a>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=wKM3aMoAAAAJ">Amrita Bhattacharjee</a>,</span>
+              <a href="https://amritabh.github.io/">Amrita Bhattacharjee</a>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=Dzf0MJcAAAAJ">Huan Liu</a>
+              <a href="https://faculty.engineering.asu.edu/huanliu/">Huan Liu</a>
             </span>
           </div>
 
@@ -289,46 +289,41 @@
 <!-- Key Findings / TL;DR -->
 <section class="section" id="findings" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Key Findings</h2>
-      </div>
-    </div>
-    <div class="tldr-grid">
-      <div class="tldr-card">
-        <h4>1. Communication always shifts</h4>
-        <p>Low agreeableness drives every model to a disagreement-dominated profile
-           (exploration fraction <span class="dnerf">&phi; &asymp; 0.93</span>), with large effect
-           sizes (Cohen's <i>d</i> from &minus;1.17 to &minus;12.39).</p>
-      </div>
-      <div class="tldr-card preserved">
-        <h4>2. Structured coding is buffered</h4>
-        <p>Despite the massive communication shift, milestone completion is essentially unchanged for
-           3 of 4 models (Claude <span class="cell-preserved">12.1&rarr;12.4</span>, <i>d</i>=0.06). The
-           code artifact filters out process degradation.</p>
-      </div>
-      <div class="tldr-card degraded">
-        <h4>3. Research &amp; bargaining are exposed</h4>
-        <p>The same prompt cuts research milestones by up to 66% and collapses bargaining agreement
-           from ~40% to <span class="cell-degraded">&le;1%</span>. Unstructured output has no
-           constraint to anchor convergence.</p>
-      </div>
-      <div class="tldr-card">
-        <h4>4. Only agreeableness matters</h4>
-        <p>Conscientiousness and openness ablations leave communication near baseline. High
-           agreeableness is null (LLMs are already trained to be cooperative); low agreeableness
-           pushes against the prior.</p>
-      </div>
-      <div class="tldr-card">
-        <h4>5. Loaded adjectives inflate effects</h4>
-        <p>A neutral paraphrase attenuates the shift and removes cross-model convergence, but a
-           model-specific residual persists. Loaded Goldberg adjectives partly measure prompt-toxicity
-           sensitivity.</p>
-      </div>
-      <div class="tldr-card">
-        <h4>6. Design recommendation</h4>
-        <p>Deploy low agreeableness as a <b>bounded, lead-position critic</b> rather than a team-wide
-           trait. A lead challenger can match baseline; non-lead challengers hurt.</p>
+        <h2 class="title is-3 has-text-centered">Key Findings</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>Communication always shifts.</b> Low agreeableness drives every model to a
+            disagreement-dominated profile (exploration fraction <span class="dnerf">&phi; &asymp; 0.93</span>),
+            with large effect sizes (Cohen's <i>d</i> from &minus;1.17 to &minus;12.39).
+          </p>
+          <p>
+            <b>Structured coding is buffered.</b> Despite the massive communication shift, milestone
+            completion is essentially unchanged for 3 of 4 models (Claude
+            <span class="cell-preserved">12.1&rarr;12.4</span>, <i>d</i>=0.06). The code artifact filters
+            out process degradation.
+          </p>
+          <p>
+            <b>Research &amp; bargaining are exposed.</b> The same prompt cuts research milestones by up to
+            66% and collapses bargaining agreement from ~40% to <span class="cell-degraded">&le;1%</span>.
+            Unstructured output has no constraint to anchor convergence.
+          </p>
+          <p>
+            <b>Only agreeableness matters.</b> Conscientiousness and openness ablations leave communication
+            near baseline. High agreeableness is null (LLMs are already trained to be cooperative); low
+            agreeableness pushes against the prior.
+          </p>
+          <p>
+            <b>Loaded adjectives inflate effects.</b> A neutral paraphrase attenuates the shift and removes
+            cross-model convergence, but a model-specific residual persists. Loaded Goldberg adjectives
+            partly measure prompt-toxicity sensitivity.
+          </p>
+          <p>
+            <b>Design recommendation.</b> Deploy low agreeableness as a <b>bounded, lead-position critic</b>
+            rather than a team-wide trait. A lead challenger can match baseline; non-lead challengers hurt.
+          </p>
+        </div>
       </div>
     </div>
   </div>
