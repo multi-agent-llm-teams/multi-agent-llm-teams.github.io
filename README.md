@@ -1,6 +1,8 @@
 # When Does Personality Composition Matter for Multi-Agent LLM Teams?
 
-Project page for the paper *"When Does Personality Composition Matter for Multi-Agent LLM Teams?"* by Aryan Keluskar, Amrita Bhattacharjee, and Huan Liu (School of Computing & AI, Arizona State University).
+Project page for the paper *"When Does Personality Composition Matter for Multi-Agent LLM Teams?"* by Aryan Keluskar, Amrita Bhattacharjee, and Huan Liu (School of Computing & AI, Arizona State University). 
+
+Accepted to the Third Conference on Language Modeling (COLM 2026). See you in San Francisco! 🌉
 
 **Site:** https://multi-agent-llm-teams.github.io/
 
