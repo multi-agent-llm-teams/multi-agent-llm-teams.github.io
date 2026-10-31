@@ -1,0 +1,45 @@
+# When Does Personality Composition Matter for Multi-Agent LLM Teams?
+
+> A COLM 2026 paper testing whether personality prompts that measurably shift LLM agent communication actually change objective task outcomes. They shift communication everywhere (Cohen's d from −1.17 to −12.39), but outcomes only degrade when the task is unstructured: structured code artifacts buffer the effect ("artifact-mediated buffering"), while open-ended research and competitive bargaining suffer. Low agreeableness collapses bargaining agreement from ~40% to ≤1%.
+
+Paper: "When Does Personality Composition Matter for Multi-Agent LLM Teams?" by Aryan Keluskar, Amrita Bhattacharjee, and Huan Liu (School of Computing & AI, Arizona State University). Published at the Conference on Language Modeling (COLM 2026), San Francisco, October 6–9, 2026.
+
+## Key facts
+
+- Four frontier models evaluated: Claude Sonnet 4.5, GPT-4o, Grok-3, DeepSeek V3.1, on coding (3 agents), research (5 agents), and buyer–seller bargaining (2 agents) from MultiAgentBench.
+- Personality shaped with Goldberg's bipolar adjective markers for the Big Five (Serapio-García et al. 2025 protocol); primary conditions low-agreeableness (level 2) and high-agreeableness (level 8).
+- Low-A drives every model to a disagreement-dominated communication profile (exploration fraction φ ≈ 0.93) — but in coding, milestone completion is essentially unchanged for 3 of 4 models (Claude 12.1→12.4, d=0.06).
+- Unstructured tasks are exposed: research milestones drop up to 66%; bargaining agreement collapses from ~40% baseline to ≤1% under low-A across all three tested models. High-A roughly doubles agreement.
+- Low-A agents still negotiate (GPT-4o revises offers in 90% of runs vs. 95% at baseline) but call accept_offer in only 1% of runs: agreeableness acts on the final accept decision.
+- Only agreeableness matters: conscientiousness and openness ablations leave communication near baseline; high-A is null because RLHF-trained models are already cooperative.
+- A neutral paraphrase of the low-A prompt ("direct, candid, skeptical of consensus...") attenuates the shift and removes cross-model convergence, but a model-specific residual persists: loaded Goldberg adjectives partly measure prompt-toxicity sensitivity.
+- Design recommendation: deploy low agreeableness as a bounded, lead-position critic, not a team-wide trait.
+
+## Links
+
+- [Project page](https://multi-agent-llm-teams.github.io/): abstract, findings, task taxonomy, full results tables, FAQ.
+- [arXiv:2606.27443](https://arxiv.org/abs/2606.27443)
+- [OpenReview](https://openreview.net/forum?id=MS8jsgZC62)
+- [Press kit](https://multi-agent-llm-teams.github.io/press.md): plain-English summary and headline numbers for journalists.
+
+## Cite
+
+```bibtex
+@article{keluskar2026personality,
+  author  = {Keluskar, Aryan and Bhattacharjee, Amrita and Liu, Huan},
+  title   = {When Does Personality Composition Matter for Multi-Agent LLM Teams?},
+  journal = {arXiv preprint arXiv:2606.27443},
+  year    = {2026},
+}
+```
+
+## Authors
+
+- [Aryan Keluskar](https://aryankeluskar.com) — Arizona State University ([Scholar](https://scholar.google.com/citations?user=wVDeZtcAAAAJ), [ORCID 0009-0000-4587-7955](https://orcid.org/0009-0000-4587-7955), [OpenReview](https://openreview.net/profile?id=~Aryan_Keluskar1), [X @soydotrun](https://x.com/soydotrun))
+- [Amrita Bhattacharjee](https://amritabh.github.io/) — Arizona State University ([GitHub](https://github.com/amritabh))
+- [Huan Liu](https://faculty.engineering.asu.edu/huanliu/) — Arizona State University ([Scholar](https://scholar.google.com/citations?user=Dzf46C8AAAAJ), [DBLP](https://dblp.org/pid/92/309-1.html))
+
+## Related work by this group
+
+- [ToolAlignBench: Investigating Alignment Conflicts in Tool-Calling Enabled LLMs](https://toolalignbench.github.io/) (ICML 2026 workshop)
+- [Do LLMs Understand Ambiguity in Text?](https://llm-ambiguity.github.io/) (IEEE BigData 2024)
