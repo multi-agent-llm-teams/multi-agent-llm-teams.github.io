@@ -49,11 +49,26 @@ The site publishes the full set of agent-discovery surfaces. Everything is publi
 
 Two implementation notes:
 
-- GitHub Pages runs Jekyll over the deployed artifact (that is how `press.md` is also served rendered as `/press.html`). Jekyll drops dot-directories by default, so [`_config.yml`](_config.yml) sets `include: [.well-known]` to publish the `/.well-known/*` files. Delete that at your peril.
-- `Link` response headers, `Accept: text/markdown` negotiation, and DNS-AID records cannot be configured on `github.io` (no custom headers, no content negotiation, no DNS control). The `<link rel="...">` tags in `index.html` carry the equivalent discovery pointers in HTML, and `/llms.txt` + `press.md` serve raw Markdown.
+- The deployment ships a `.nojekyll` file, so GitHub Pages serves the repository verbatim: dot-directories like `/.well-known/` are served as-is and Markdown files (`auth.md`, `press.md`, the `SKILL.md` files) are served raw as `text/markdown` instead of being converted. [`_config.yml`](_config.yml) is kept as a fallback for the case where `.nojekyll` is ever removed (Jekyll drops dot-directories unless `include: [.well-known]` is set).
+- `Link` response headers, `Accept: text/markdown` negotiation, and DNS-AID records cannot be configured on `github.io` (no custom headers, no content negotiation, no DNS control). The `<link rel="...">` tags in `index.html` carry the equivalent discovery pointers in HTML, and `/llms.txt` + `llms-full.txt` + `press.md` serve raw Markdown.
   A custom domain behind a configurable edge (e.g. Cloudflare) would be needed to close those three checks.
 
 When editing a skill under `.well-known/agent-skills/`, recompute its `sha256` digest (`shasum -a 256 .well-known/agent-skills/<name>/SKILL.md`) and update [`.well-known/agent-skills/index.json`](.well-known/agent-skills/index.json).
+
+### Keeping search engines fresh (IndexNow)
+
+The file [`b002208d8198fa4db2637140bc2c4c2a.txt`](b002208d8198fa4db2637140bc2c4c2a.txt) is this site's [IndexNow](https://www.indexnow.org/) key. After deploying meaningful content changes, push the updated URLs to Bing/Yandex/Seznam/Naver:
+
+```bash
+curl -X POST https://api.indexnow.org/indexnow \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+    "host": "multi-agent-llm-teams.github.io",
+    "key": "b002208d8198fa4db2637140bc2c4c2a",
+    "keyLocation": "https://multi-agent-llm-teams.github.io/b002208d8198fa4db2637140bc2c4c2a.txt",
+    "urlList": ["https://multi-agent-llm-teams.github.io/"]
+  }'
+```
 
 ## Credits
 
