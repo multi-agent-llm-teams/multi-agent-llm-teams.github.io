@@ -1,28 +1,49 @@
 # auth.md — Multi-Agent LLM Teams
 
-This document tells an AI agent how to obtain access to the resources on <https://multi-agent-llm-teams.github.io/>. Short version: **no registration, no credentials, and no scopes are required — every resource on this site is public.**
+Protocol: auth.md — <https://github.com/workos/auth.md>
+This document tells an AI agent how to obtain access to the resources on <https://multi-agent-llm-teams.github.io/>.
+
+**Supported access method: `anonymous`.** This is a fully public, static site: there is no user sign-up, no registration endpoint, no identity assertion (ID-JAG, verified email, or otherwise), no credential issuance, and no authorization server. An agent already has complete access via plain HTTP — no credentials, no scopes, no `Authorization` header on any endpoint.
 
 ## Audience
 
-Any AI agent, crawler, search engine, or automated client is welcome to read this site. It is a static project page for the COLM 2026 paper *"When Does Personality Composition Matter for Multi-Agent LLM Teams?"* by Aryan Keluskar, Amrita Bhattacharjee, and Huan Liu (Arizona State University). Content is released under CC BY-SA 4.0.
+Any AI agent, crawler, search engine, or automated client. The site is the project page for the COLM 2026 paper *"When Does Personality Composition Matter for Multi-Agent LLM Teams?"* by Aryan Keluskar, Amrita Bhattacharjee, and Huan Liu (Arizona State University). Site content is licensed CC BY-SA 4.0.
 
-## Registration
+## Access flow (self-contained — no OAuth metadata exists for this site)
 
-No agent registration endpoint exists, and none is needed: there are no accounts, no protected endpoints, and no per-agent state. Nothing is gated behind an authorization server, so there is no registration or provisioning step to perform before fetching any URL on this site.
+This document is the complete, standalone registration recipe. There is nothing to register and no credential to exchange; the flow is:
 
-## Credentials and scopes
+1. **Discover.** Fetch `https://multi-agent-llm-teams.github.io/llms.txt` (curated site summary) or the capability manifest at `/.well-known/ai-catalog.json` to enumerate every machine-readable surface this site offers.
+2. **Register (step intentionally empty).** No registration, provisioning call, claim, or token exchange exists: access is provisioned by the origin to everyone by default. Fetch any URL — for example the paper metadata at `/api/paper.json` or the results tables at `/api/results.json`. Requests that carry credentials are not treated differently.
+3. **Use.** Every endpoint is read-only and public. No `Authorization` header is required or recognized. Nothing needs revoking, because no credential is ever issued.
 
-- **Credentials:** none are issued, accepted, or required. No OAuth flows, API keys, or bearer tokens are implemented.
-- **Scopes:** no scopes exist because no resource is access-controlled.
-- **Rate limits:** none are configured. The site is served by GitHub Pages; be a good citizen and follow GitHub's platform policies rather than hammering the origin.
+## Endpoints
+
+| Purpose | URL |
+|---|---|
+| Origin — provisions access to every resource | `https://multi-agent-llm-teams.github.io/` |
+| Site summary for agents | `https://multi-agent-llm-teams.github.io/llms.txt` |
+| Full site content in Markdown | `https://multi-agent-llm-teams.github.io/llms-full.txt` |
+| Capability manifest (ARD) | `https://multi-agent-llm-teams.github.io/.well-known/ai-catalog.json` |
+| API catalog (RFC 9727) | `https://multi-agent-llm-teams.github.io/.well-known/api-catalog` |
+| Paper metadata JSON | `https://multi-agent-llm-teams.github.io/api/paper.json` |
+| Results data JSON | `https://multi-agent-llm-teams.github.io/api/results.json` |
+| OAuth Protected Resource Metadata (RFC 9728) | `https://multi-agent-llm-teams.github.io/.well-known/oauth-protected-resource` |
+
+## Credentials, scopes, and revocation
+
+- **Credentials:** none are issued, accepted, or required. No OAuth flows, API keys, bearer tokens, or claim ceremonies are implemented anywhere on this origin.
+- **Scopes:** none exist because no resource is access-controlled.
+- **Revocation:** not applicable — no credential is ever issued.
+- **Rate limits:** none configured (GitHub Pages static hosting). Be a good citizen and follow GitHub's platform policies.
 
 ## Machine-readable metadata
 
-- `/.well-known/oauth-protected-resource` (RFC 9728) — this resource's metadata. It declares `authorization_servers: []` and `scopes_supported: []`, i.e. no authorization server guards this resource and no scopes are used. This file exists so that agents performing OAuth discovery learn definitively that no authentication is needed, rather than having to guess.
-- `/.well-known/api-catalog` (RFC 9727) — linkset of this site's read-only JSON APIs (`/api/paper.json`, `/api/results.json`, `/api/status.json`), all public.
-- `/.well-known/ai-catalog.json` — Agentic Resource Discovery manifest of everything on this site an agent can use.
-- `/llms.txt` — curated plain-text site summary.
+- `/.well-known/oauth-protected-resource` (RFC 9728) — declares `authorization_servers: []` and `scopes_supported: []`: no authorization server guards this resource. Published so that agents performing OAuth discovery learn definitively that no authentication is needed, rather than having to guess.
+- `/.well-known/api-catalog` (RFC 9727), `/.well-known/ai-catalog.json`, `/.well-known/agent-skills/index.json`, and `/api/openapi.json` — every other discovery surface, all public.
 
 ## Contact
 
-Site content questions: [Aryan Keluskar](https://aryankeluskar.com). This site publishes no security-sensitive functionality; if you believe you have found a problem, open an issue at <https://github.com/multi-agent-llm-teams/multi-agent-llm-teams.github.io>.
+Questions about site content: [Aryan Keluskar](https://aryankeluskar.com).
+Problems with the site: open an issue at
+<https://github.com/multi-agent-llm-teams/multi-agent-llm-teams.github.io>.
