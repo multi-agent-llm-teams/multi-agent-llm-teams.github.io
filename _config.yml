@@ -1,8 +1,10 @@
-# Jekyll config for the GitHub Pages deployment.
-#
-# .github/workflows/pages.yml uploads this repository root as the Pages
-# artifact, and GitHub Pages runs Jekyll over it (that is how press.md gets
-# rendered to press.html). Jekyll ignores dot-directories by default, which
-# would 404 every /.well-known/* agent-discovery file this site publishes.
-# Including the directory here makes Jekyll copy it through verbatim.
+# NOTE: the deployment now ships a .nojekyll file, which makes GitHub Pages
+# serve the deployed artifact verbatim (see .github/workflows/pages.yml, which
+# uploads this repository root as the Pages artifact). That means:
+#   - dot-directories like .well-known/ are served as-is,
+#   - markdown files (auth.md, SKILL.md, press.md) are served as raw
+#     text/markdown rather than being converted to HTML.
+# This file is kept only for the case where the .nojekyll file is ever
+# removed: GitHub Pages would then run Jekyll over the artifact, and Jekyll
+# drops dot-directories unless they are included here.
 include: [.well-known]

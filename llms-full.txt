@@ -1,0 +1,171 @@
+# When Does Personality Composition Matter for Multi-Agent LLM Teams? — full site content
+
+> COLM 2026 paper by Aryan Keluskar, Amrita Bhattacharjee, and Huan Liu (School of Computing & AI, Arizona State University). Personality prompts shift multi-agent LLM communication everywhere (communication state φ from 0.44 to ~0.93), but outcomes only change when the task output is unstructured: structured code artifacts buffer the effect ("artifact-mediated buffering"), while unstructured research milestones drop up to 66% and bargaining agreement collapses from ~40% to ≤1%.
+
+This file is the complete content of https://multi-agent-llm-teams.github.io/ in markdown, for LLM ingestion. The concise overview is at https://multi-agent-llm-teams.github.io/llms.txt.
+
+- Paper: arXiv:2606.27443 — https://arxiv.org/abs/2606.27443 (PDF: https://arxiv.org/pdf/2606.27443)
+- OpenReview: https://openreview.net/forum?id=MS8jsgZC62
+- Venue: Conference on Language Modeling (COLM 2026), San Francisco, October 6–9, 2026
+- Code: https://github.com/multi-agent-llm-teams
+- Press kit: https://multi-agent-llm-teams.github.io/press.md
+- Structured data APIs: https://multi-agent-llm-teams.github.io/api/paper.json and https://multi-agent-llm-teams.github.io/api/results.json
+
+## Abstract
+
+Personality prompting shapes how large language models communicate, yet whether those shifts change objective task outcomes has not been tested directly. Prior work shows that agents prompted with low agreeableness produce adversarial language, while those prompted with high agreeableness become cooperative, but the relationship between communication style and task performance has not been systematically examined across multiple domains.
+
+In this work, we investigate whether personality composition matters for multi-agent team performance by manipulating personality traits across frontier LLMs on three task domains: structured coding, open-ended research collaboration, and competitive bargaining. We find that personality effects depend critically on task structure. In coding tasks, low agreeableness leads to large communication shifts that have little effect on milestone completion. In open-ended collaboration and bargaining, the same manipulation substantially degrades performance. We discuss implications for multi-agent system design and the limits of personality manipulation.
+
+## Key findings
+
+> **Bottom line:** the same low-agreeableness prompt shifts agent communication identically in every domain (φ 0.44 → 0.93), but only unstructured tasks see outcomes degrade. A structured code artifact buffers the effect: coding milestones hold for 3 of 4 models (Cohen's d = 0.06 for Claude), research milestones fall by up to 66%, and bargaining agreement collapses from ~40% to ≤1%.
+
+- **Communication always shifts.** Low agreeableness drives every model to a disagreement-dominated profile (exploration fraction φ ≈ 0.93), with large effect sizes (Cohen's d from −1.17 to −12.39).
+- **Structured coding is buffered.** Despite the massive communication shift, milestone completion is essentially unchanged for 3 of 4 models (Claude 12.1 → 12.4, d = 0.06). The code artifact filters out process degradation.
+- **Research and bargaining are exposed.** The same prompt cuts research milestones by up to 66% and collapses bargaining agreement from ~40% to ≤1%. Unstructured output has no constraint to anchor convergence.
+- **Only agreeableness matters.** Conscientiousness and openness ablations leave communication near baseline. High agreeableness is null (LLMs are already trained to be cooperative); low agreeableness pushes against the prior.
+- **Loaded adjectives inflate effects.** A neutral paraphrase attenuates the shift and removes cross-model convergence, but a model-specific residual persists. Loaded Goldberg adjectives partly measure prompt-toxicity sensitivity.
+- **Design recommendation.** Deploy low agreeableness as a bounded, lead-position critic rather than a team-wide trait. A lead challenger can match baseline; non-lead challengers hurt.
+
+## Artifact-mediated buffering
+
+**Artifact-mediated buffering** is the finding that a formal deliverable with syntactic and semantic constraints (such as a code file) insulates task outcomes from degraded communication. The code must satisfy the same constraints regardless of how hostile the agents were, so process degradation is filtered out of the final artifact. Unstructured text (research ideas, negotiation offers) has no such constraint, and the same degradation passes through to the outcome.
+
+- Preserved (blue): structured code → milestones hold near baseline.
+- Exposed (orange): unstructured research and bargaining → outcomes degrade sharply.
+
+## Task taxonomy
+
+Two dimensions determine how communication quality can reach the outcome: **artifact structure** (does the deliverable have formal constraints?) and **goal alignment** (do agents share or oppose objectives?).
+
+| | Cooperative (shared objective) | Competitive (opposing objectives) |
+|---|---|---|
+| High structure | Coding — milestones robust (d = 0.06, 3/4 models) | no natural analogue (out of scope) |
+| Low structure | Research — milestones −66% (3/3 models) | Bargaining — agreement → 0% (3/3 models) |
+
+Under low agreeableness, outcomes in the high-structure cooperative cell stay near baseline while outcomes in the low-structure cells drop.
+
+## Methodology
+
+Personality is shaped with **Goldberg's bipolar adjective markers** for the Big Five, following the validated psychometric protocol of Serapio-García et al. (2025). Each dimension is operationalized through seven adjective pairs crossed with 9-level linguistic qualifiers. The primary conditions are **low-A** (level 2) and **high-A** (level 8), prepended to each agent's system prompt.
+
+Example (low-A): "You are *very* unkind, *very* uncooperative, *very* selfish, *very* distrustful, *very* cold, *very* harsh, *very* unsympathetic."
+
+Communication is measured with an adaptation of **Bales' Interaction Process Analysis**, classifying each message segment into questions, disagreements, suggestions, and acknowledgments (GPT-4o-mini, multi-label, cross-checked with an independent second judge, Kimi K2.6). The **communication state φ** is the fraction of acts devoted to exploration (questions, disagreements, suggestions) rather than convergence (acknowledgments):
+
+φ = (c_Q + c_D + c_S) / (c_Q + c_D + c_S + c_A)
+
+Models evaluated: **Claude Sonnet 4.5, GPT-4o, Grok-3, and DeepSeek V3.1**, on tasks drawn from **MultiAgentBench** spanning coding (3 agents), research (5 agents), and buyer–seller bargaining (2 agents).
+
+## Results
+
+### Personality reshapes communication (all models)
+
+Communication state (φ) and act rates by model and condition:
+
+| Model | Condition | φ | r_q | r_d | r_s | r_ack |
+|---|---|---|---|---|---|---|
+| Claude Sonnet 4.5 | Baseline | .77 | .11 | .02 | .64 | .23 |
+| Claude Sonnet 4.5 | High-A | .68 | .20 | .01 | .48 | .32 |
+| Claude Sonnet 4.5 | Low-A | **.93** | .07 | .51 | .36 | .07 |
+| GPT-4o | Baseline | .44 | .15 | .00 | .29 | .56 |
+| GPT-4o | High-A | .42 | .18 | .00 | .24 | .58 |
+| GPT-4o | Low-A | **.93** | .10 | .45 | .39 | .07 |
+| Grok-3 | Baseline | .44 | .22 | .00 | .22 | .56 |
+| Grok-3 | High-A | .43 | .16 | .00 | .27 | .57 |
+| Grok-3 | Low-A | **.93** | .05 | .51 | .37 | .07 |
+| DeepSeek V3.1 | Baseline | .68 | .13 | .03 | .52 | .32 |
+| DeepSeek V3.1 | High-A | .80 | .13 | .01 | .69 | .17 |
+| DeepSeek V3.1 | Low-A | **.95** | .07 | .10 | .77 | .05 |
+
+Low-A drives Claude, GPT-4o, and Grok-3 to a disagreement-dominated profile; DeepSeek converges via suggestions. High-A produces minimal shifts across all models.
+
+### The same manipulation, three different outcomes
+
+| Domain | Model | φ_base | φ_lowA | Outcome_base | Outcome_lowA | Cohen's d |
+|---|---|---|---|---|---|---|
+| Coding (milestones) | Claude | .77 | .93 | 12.1 | 12.4 | 0.06 |
+| Coding | GPT-4o | .44 | .93 | 10.9 | 9.5 | 0.51 |
+| Coding | Grok-3 | .44 | .93 | 14.4 | 10.9 | 1.69* |
+| Coding | DeepSeek | .68 | .95 | 10.7 | 8.8 | 0.43 |
+| Research (milestones) | Claude | — | — | 10.5 | 10.8 | 0.06 |
+| Research | GPT-4o | .57 | .81 | 10.5 | 3.5 | 1.41* |
+| Research | Grok-3 | .58 | .93 | 17.0 | 11.8 | 1.30* |
+| Research | DeepSeek | .72 | .92 | 9.7 | 5.8 | 0.78* |
+| Bargaining (agreement rate) | Claude | n/a | n/a | 40% | 0% | — |
+| Bargaining | GPT-4o | n/a | n/a | 37% | 1% | — |
+| Bargaining | DeepSeek | n/a | n/a | 18% | 0% | — |
+
+\* p < 0.01. In coding, large φ shifts (.44 → .93) produce null outcome effects for 3 of 4 models. In research and bargaining, outcomes degrade substantially.
+
+### Bargaining: personality decides whether agreement happens at all
+
+| Model | Condition | Accept % | 95% CI | Rounds |
+|---|---|---|---|---|
+| GPT-4o | Baseline | 37 | [28, 47] | 3.2 |
+| GPT-4o | High-A | 71 | [61, 79] | 2.7 |
+| GPT-4o | Low-A | 1 | [0, 5] | 3.3 |
+| GPT-4o | Neutral | 16 | [10, 24] | 3.6 |
+| DeepSeek V3.1 | Baseline | 18 | [12, 27] | 3.1 |
+| DeepSeek V3.1 | High-A | 26 | [18, 35] | 2.3 |
+| DeepSeek V3.1 | Low-A | 0 | [0, 4] | 2.4 |
+| DeepSeek V3.1 | Neutral | 7 | [3, 14] | 2.6 |
+| Claude Sonnet 4.5 | Baseline | 40 | [22, 61] | 3.4 |
+| Claude Sonnet 4.5 | High-A | 80 | [58, 92] | 2.5 |
+| Claude Sonnet 4.5 | Low-A | 0 | [0, 16] | 3.4 |
+| Claude Sonnet 4.5 | Neutral | 20 | [6, 51] | 3.2 |
+
+Low-A agents do not simply refuse: they move off their opening offer and exchange counteroffers at near-baseline rates (GPT-4o revises in 90% of runs vs. 95% at baseline) yet call `accept_offer` in only 1% of runs. Agreeableness acts on the final accept decision, not on whether agents negotiate.
+
+### Are effects inflated by negatively loaded adjectives?
+
+To separate a genuine trait effect from prompt-valence artifacts, a **neutral paraphrase** was run: "You are direct, candid, independent-minded, skeptical of consensus, and prefer efficiency over diplomacy." Under Goldberg low-A all models converge (φ span = 0.02); under the neutral paraphrase they diverge (span = 0.45), and no model generates disagreements (δ ≤ 0.15). The degradation is amplified by loaded adjectives but not solely caused by them — a model-specific residual persists once valence is controlled. Practical takeaway: use neutral behavioral descriptors rather than negatively valenced personality adjectives if you want predictable, model-specific trait effects.
+
+## Frequently asked questions
+
+**Does giving an LLM agent a personality change its task performance?** It depends on task structure. Personality prompting reliably shifts how agents communicate across every domain, but whether that reaches objective outcomes depends on the output medium. In structured coding tasks, low agreeableness barely changes milestone completion. In open-ended research and competitive bargaining, the same manipulation substantially degrades performance.
+
+**What is artifact-mediated buffering?** It is the finding that a formal deliverable with syntactic and semantic constraints (such as a code file) insulates task outcomes from degraded communication. The code must satisfy the same constraints regardless of how hostile the agents were, so process degradation is filtered out of the final artifact. Unstructured outputs like research ideas or negotiation offers have no such constraint, so communication degradation passes straight through.
+
+**Why is agreeableness the trait that matters most?** Among the Big Five, only agreeableness produces the large communication shift. Conscientiousness and openness ablations leave communication near baseline. Frontier LLMs are trained via RLHF and constitutional methods to be cooperative, so high agreeableness saturates while low agreeableness pushes against the training prior. Personality prompting is therefore mainly a tool for inducing adversarial behavior, not for enhancing cooperation.
+
+**How should I use personality in a production multi-agent system?** Deploy low agreeableness as a bounded, lead-position critic rather than a team-wide trait. A lead-position challenger can match or slightly exceed baseline (e.g., GPT-4o research 9.70 milestones with a lead challenger vs. 3.53 for an all-low-A team vs. 10.47 baseline), whereas non-lead challengers can hurt. Avoid negatively valenced adjectives if you want predictable, model-specific effects.
+
+**Which models and benchmarks were used?** Claude Sonnet 4.5, GPT-4o, Grok-3, and DeepSeek V3.1, evaluated on coding, research, and buyer–seller bargaining tasks from MultiAgentBench. Communication acts were classified with GPT-4o-mini and cross-checked with an independent second judge (Kimi K2.6).
+
+## Cite this paper
+
+```bibtex
+@article{keluskar2026personality,
+  author  = {Keluskar, Aryan and Bhattacharjee, Amrita and Liu, Huan},
+  title   = {When Does Personality Composition Matter for Multi-Agent LLM Teams?},
+  journal = {arXiv preprint arXiv:2606.27443},
+  year    = {2026},
+}
+```
+
+Cite the arXiv preprint (arXiv:2606.27443, DOI 10.48550/arXiv.2606.27443) unless citing the COLM 2026 proceedings version. In prose: "Keluskar, Bhattacharjee, and Liu (COLM 2026)".
+
+## Authors
+
+- **Aryan Keluskar** — Arizona State University. https://aryankeluskar.com (Google Scholar: https://scholar.google.com/citations?user=wVDeZtcAAAAJ, ORCID: https://orcid.org/0009-0000-4587-7955, OpenReview: https://openreview.net/profile?id=~Aryan_Keluskar1, X: https://x.com/soydotrun)
+- **Amrita Bhattacharjee** — Arizona State University. https://amritabh.github.io/ (GitHub: https://github.com/amritabh)
+- **Huan Liu** — Arizona State University. https://faculty.engineering.asu.edu/huanliu/ (Google Scholar: https://scholar.google.com/citations?user=Dzf46C8AAAAJ, DBLP: https://dblp.org/pid/92/309-1.html)
+
+## Related work by this group
+
+- **ToolAlignBench: Investigating Alignment Conflicts in Tool-Calling Enabled LLMs** (ICML 2026 workshop) — https://toolalignbench.github.io/ — the same group benchmarks whether safety-aligned tool-calling agents follow deployment instructions when values conflict: they override them up to 43.4% of the time.
+- **Do LLMs Understand Ambiguity in Text? A Case Study in Open-world Question Answering** (IEEE BigData 2024) — https://llm-ambiguity.github.io/ — simple, training-free, token-level disambiguation prompts improve GPT-4o and GPT-4o-mini accuracy on ambiguous open-domain questions.
+
+## Machine-readable endpoints
+
+- Paper metadata + BibTeX as JSON: https://multi-agent-llm-teams.github.io/api/paper.json
+- All result tables as JSON: https://multi-agent-llm-teams.github.io/api/results.json
+- OpenAPI 3.1 description: https://multi-agent-llm-teams.github.io/api/openapi.json
+- API catalog (RFC 9727): https://multi-agent-llm-teams.github.io/.well-known/api-catalog
+- Agent skills: https://multi-agent-llm-teams.github.io/.well-known/agent-skills/index.json
+- ARD capability manifest: https://multi-agent-llm-teams.github.io/.well-known/ai-catalog.json
+- Agent access info (auth.md — no registration needed, everything is public): https://multi-agent-llm-teams.github.io/auth.md
+
+This website content is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (https://creativecommons.org/licenses/by-sa/4.0/).
