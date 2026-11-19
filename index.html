@@ -14,6 +14,15 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://multi-agent-llm-teams.github.io/">
 
+  <!-- Agent discovery: machine-readable surfaces (RFC 8288 link relations in HTML;
+       ARD spec 6.1). GitHub Pages cannot emit Link response headers, so discovery
+       pointers are declared here for agents that parse the document head. -->
+  <link rel="ai-catalog" href="/.well-known/ai-catalog.json">
+  <link rel="api-catalog" href="/.well-known/api-catalog">
+  <link rel="describedby" href="/.well-known/agent-skills/index.json">
+  <link rel="service-desc" href="/api/openapi.json">
+  <link rel="alternate" type="text/markdown" href="/llms.txt">
+
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="When Does Personality Composition Matter for Multi-Agent LLM Teams?">
@@ -79,6 +88,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/webmcp.js"></script>
 
   <!-- Structured data: Scholarly Article (AI-SEO / rich results) -->
   <script type="application/ld+json">

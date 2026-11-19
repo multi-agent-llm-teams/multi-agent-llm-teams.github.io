@@ -1,0 +1,83 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Multi-Agent LLM Teams (COLM 2026)",
+    "identifier": "did:web:multi-agent-llm-teams.github.io",
+    "documentationUrl": "https://multi-agent-llm-teams.github.io/llms.txt",
+    "logoUrl": "https://multi-agent-llm-teams.github.io/static/images/og.jpg"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:multi-agent-llm-teams.github.io:mcp:paper-page",
+      "displayName": "Paper page WebMCP tools",
+      "type": "application/mcp-server-card+json",
+      "url": "https://multi-agent-llm-teams.github.io/.well-known/mcp/server-card.json",
+      "description": "Browser-side tools (WebMCP) exposing the paper's metadata, key findings, full-text site search, and section navigation to an agent driving the page.",
+      "capabilities": ["get_paper_metadata", "get_key_findings", "search_site_content", "navigate_to_section"],
+      "representativeQueries": [
+        "get the bibtex citation for the COLM 2026 multi-agent personality paper",
+        "what are the key findings of the personality composition paper",
+        "search the paper site for bargaining agreement results",
+        "open the results section of the paper page"
+      ]
+    },
+    {
+      "identifier": "urn:air:multi-agent-llm-teams.github.io:api:paper",
+      "displayName": "Paper metadata API",
+      "type": "application/json",
+      "url": "https://multi-agent-llm-teams.github.io/api/paper.json",
+      "description": "Read-only JSON with the paper's title, authors, venue, arXiv/DOI/OpenReview identifiers, abstract, and BibTeX.",
+      "representativeQueries": [
+        "who are the authors of the multi-agent LLM teams paper",
+        "get the abstract of arXiv 2606.27443",
+        "how do I cite the personality composition paper"
+      ]
+    },
+    {
+      "identifier": "urn:air:multi-agent-llm-teams.github.io:api:results",
+      "displayName": "Results data API",
+      "type": "application/json",
+      "url": "https://multi-agent-llm-teams.github.io/api/results.json",
+      "description": "Structured result tables: communication-state phi per model and condition, cross-domain outcomes under low agreeableness, and bargaining acceptance rates with confidence intervals.",
+      "representativeQueries": [
+        "how much did research milestones drop under low agreeableness",
+        "bargaining agreement rate for GPT-4o under low agreeableness",
+        "communication phi shift for Claude under the low-A condition"
+      ]
+    },
+    {
+      "identifier": "urn:air:multi-agent-llm-teams.github.io:skills:agent-skills",
+      "displayName": "Agent skills for using this site",
+      "type": "application/json",
+      "url": "https://multi-agent-llm-teams.github.io/.well-known/agent-skills/index.json",
+      "description": "Discoverable SKILL.md files teaching agents how to cite the paper, use its data API, and answer quantitative questions from its results.",
+      "representativeQueries": [
+        "what skills does the multi-agent llm teams site publish for agents",
+        "how should an agent work with this paper's data"
+      ]
+    },
+    {
+      "identifier": "urn:air:multi-agent-llm-teams.github.io:document:paper-page",
+      "displayName": "Paper project page",
+      "type": "text/html",
+      "url": "https://multi-agent-llm-teams.github.io/",
+      "description": "The human-readable project page: abstract, key findings, task taxonomy, methodology, results tables, FAQ, and citation info.",
+      "representativeQueries": [
+        "read the abstract of the personality composition paper",
+        "what is artifact-mediated buffering",
+        "which models and benchmarks were used in the paper"
+      ]
+    },
+    {
+      "identifier": "urn:air:multi-agent-llm-teams.github.io:document:llms-txt",
+      "displayName": "llms.txt site summary",
+      "type": "text/plain",
+      "url": "https://multi-agent-llm-teams.github.io/llms.txt",
+      "description": "Curated machine-readable summary of the paper and its key facts, links, and citation block.",
+      "representativeQueries": [
+        "give me a machine-readable summary of the paper site",
+        "list the key facts of the personality composition paper"
+      ]
+    }
+  ]
+}

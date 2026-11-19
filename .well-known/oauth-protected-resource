@@ -1,0 +1,8 @@
+{
+  "resource": "https://multi-agent-llm-teams.github.io/",
+  "resource_name": "Multi-Agent LLM Teams (COLM 2026 paper site)",
+  "resource_documentation": "https://multi-agent-llm-teams.github.io/auth.md",
+  "authorization_servers": [],
+  "scopes_supported": [],
+  "bearer_methods_supported": []
+}

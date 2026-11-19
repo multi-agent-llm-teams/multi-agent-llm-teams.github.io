@@ -1,0 +1,6 @@
+{
+  "status": "ok",
+  "service": "multi-agent-llm-teams.github.io",
+  "hosting": "github-pages",
+  "note": "Static site: this endpoint returning 200 is the health check. There is no server-side process to report on."
+}

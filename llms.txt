@@ -22,6 +22,18 @@ Paper: "When Does Personality Composition Matter for Multi-Agent LLM Teams?" by 
 - [OpenReview](https://openreview.net/forum?id=MS8jsgZC62)
 - [Press kit](https://multi-agent-llm-teams.github.io/press.md): plain-English summary and headline numbers for journalists.
 
+## Machine-readable data and agent endpoints
+
+- [Paper metadata API](https://multi-agent-llm-teams.github.io/api/paper.json): JSON with title, authors, venue, identifiers, abstract, and BibTeX.
+- [Results data API](https://multi-agent-llm-teams.github.io/api/results.json): structured communication, cross-domain, and bargaining tables.
+- [API status](https://multi-agent-llm-teams.github.io/api/status.json): health endpoint.
+- [OpenAPI description](https://multi-agent-llm-teams.github.io/api/openapi.json): OpenAPI 3.1 spec of the JSON endpoints.
+- [API catalog](https://multi-agent-llm-teams.github.io/.well-known/api-catalog): RFC 9727 linkset of the APIs above.
+- [Agent skills](https://multi-agent-llm-teams.github.io/.well-known/agent-skills/index.json): SKILL.md files for citing the paper, using its API, and answering from its results.
+- [MCP server card](https://multi-agent-llm-teams.github.io/.well-known/mcp/server-card.json): describes the page's WebMCP browser tools.
+- [auth.md](https://multi-agent-llm-teams.github.io/auth.md): agent access and registration info (none required — everything is public).
+- [ARD manifest](https://multi-agent-llm-teams.github.io/.well-known/ai-catalog.json): full capability catalog for AI agent discovery.
+
 ## Cite
 
 ```bibtex

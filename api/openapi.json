@@ -1,0 +1,142 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Multi-Agent LLM Teams paper data API",
+    "summary": "Read-only JSON endpoints serving the metadata, citation info, and result tables of the COLM 2026 paper 'When Does Personality Composition Matter for Multi-Agent LLM Teams?'.",
+    "description": "A small, fully public, read-only API served as static JSON files from GitHub Pages. No authentication: there are no scopes, no tokens, and no rate limits. Discovered via /.well-known/api-catalog (RFC 9727).",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Aryan Keluskar",
+      "url": "https://aryankeluskar.com"
+    },
+    "license": {
+      "name": "CC BY-SA 4.0",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://multi-agent-llm-teams.github.io",
+      "description": "GitHub Pages production"
+    }
+  ],
+  "paths": {
+    "/api/paper.json": {
+      "get": {
+        "summary": "Paper metadata, links, and BibTeX",
+        "description": "Title, authors, venue, identifiers (arXiv / DOI / OpenReview), abstract, canonical links, and the BibTeX citation for the paper.",
+        "operationId": "getPaper",
+        "responses": {
+          "200": {
+            "description": "Paper metadata document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["paper", "links", "citation"],
+                  "properties": {
+                    "paper": {
+                      "type": "object",
+                      "properties": {
+                        "title": { "type": "string" },
+                        "authors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": { "type": "string" },
+                              "affiliation": { "type": "string" },
+                              "url": { "type": "string", "format": "uri" }
+                            }
+                          }
+                        },
+                        "venue": { "type": "string" },
+                        "abstract": { "type": "string" },
+                        "identifiers": { "type": "object" }
+                      }
+                    },
+                    "links": { "type": "object" },
+                    "citation": {
+                      "type": "object",
+                      "properties": {
+                        "bibtex": { "type": "string" }
+                      }
+                    },
+                    "study": { "type": "object" }
+                  }
+                },
+                "examples": {
+                  "paper": {
+                    "value": {
+                      "paper": {
+                        "title": "When Does Personality Composition Matter for Multi-Agent LLM Teams?",
+                        "venue": "Conference on Language Modeling (COLM 2026)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/results.json": {
+      "get": {
+        "summary": "Structured result tables",
+        "description": "Communication-state (phi) measurements, cross-domain outcomes under low agreeableness, bargaining acceptance rates with confidence intervals, and the key-findings list. Numbers match the tables on the project page's Results section.",
+        "operationId": "getResults",
+        "responses": {
+          "200": {
+            "description": "Structured results document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["communication_state", "cross_domain_outcomes", "bargaining_acceptance", "key_findings"],
+                  "properties": {
+                    "communication_state": { "type": "object" },
+                    "cross_domain_outcomes": { "type": "object" },
+                    "bargaining_acceptance": { "type": "object" },
+                    "key_findings": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status.json": {
+      "get": {
+        "summary": "Health check",
+        "description": "Static health endpoint: a 200 from this URL means the site is being served. There is no server-side process.",
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "description": "Service is up",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["status"],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "service": { "type": "string" },
+                    "hosting": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# Jekyll config for the GitHub Pages deployment.
+#
+# .github/workflows/pages.yml uploads this repository root as the Pages
+# artifact, and GitHub Pages runs Jekyll over it (that is how press.md gets
+# rendered to press.html). Jekyll ignores dot-directories by default, which
+# would 404 every /.well-known/* agent-discovery file this site publishes.
+# Including the directory here makes Jekyll copy it through verbatim.
+include: [.well-known]
