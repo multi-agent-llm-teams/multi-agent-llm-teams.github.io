@@ -14,14 +14,17 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://multi-agent-llm-teams.github.io/">
 
-  <!-- Agent discovery: machine-readable surfaces (RFC 8288 link relations in HTML;
-       ARD spec 6.1). GitHub Pages cannot emit Link response headers, so discovery
-       pointers are declared here for agents that parse the document head. -->
+  <!-- Agent discovery: machine-readable surfaces (RFC 8288 link relations in
+       HTML; ARD spec 6.1; llms.txt v2 conventions). GitHub Pages cannot emit
+       Link response headers, so discovery pointers are declared here for
+       agents that parse the document head. -->
   <link rel="ai-catalog" href="/.well-known/ai-catalog.json">
   <link rel="api-catalog" href="/.well-known/api-catalog">
+  <link rel="describedby" href="/llms.txt">
   <link rel="describedby" href="/.well-known/agent-skills/index.json">
   <link rel="service-desc" href="/api/openapi.json">
-  <link rel="alternate" type="text/markdown" href="/llms.txt">
+  <link rel="alternate" type="text/markdown" href="/llms-full.txt">
+  <link rel="alternate" type="application/atom+xml" href="/feed.xml">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
@@ -52,6 +55,7 @@
 
   <meta property="og:locale" content="en_US" />
   <meta property="article:published_time" content="2026-06-25T00:00:00Z" />
+  <meta property="article:modified_time" content="2026-11-19T09:00:00Z" />
   <meta property="article:author" content="https://aryankeluskar.com" />
   <meta property="article:author" content="https://amritabh.github.io/" />
   <meta property="article:author" content="https://faculty.engineering.asu.edu/huanliu/" />
@@ -137,6 +141,7 @@
       }
     ],
     "datePublished": "2026-06-25",
+    "dateModified": "2026-11-19",
     "inLanguage": "en",
     "isAccessibleForFree": true,
     "publication": { "@type": "PublicationEvent", "name": "Conference on Language Modeling (COLM 2026)", "startDate": "2026-10-06", "endDate": "2026-10-09", "location": "San Francisco, USA" },
@@ -221,6 +226,70 @@
   }
   </script>
 
+  <!-- Structured data: Dataset (the machine-readable result tables) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Communication and outcome measurements for personality-composed multi-agent LLM teams",
+    "description": "Structured measurements from the COLM 2026 paper 'When Does Personality Composition Matter for Multi-Agent LLM Teams?': communication state (phi) and per-act rates for each model and condition, cross-domain task outcomes (milestone counts and Cohen's d) under low agreeableness, and buyer-seller bargaining acceptance rates with 95% confidence intervals. Models: Claude Sonnet 4.5, GPT-4o, Grok-3, DeepSeek V3.1 on MultiAgentBench coding (3 agents), research (5 agents), and bargaining (2 agents) tasks.",
+    "url": "https://multi-agent-llm-teams.github.io/api/results.json",
+    "sameAs": [
+      "https://arxiv.org/abs/2606.27443",
+      "https://openreview.net/forum?id=MS8jsgZC62"
+    ],
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "arXiv", "value": "2606.27443" },
+      { "@type": "PropertyValue", "propertyID": "DOI", "value": "10.48550/arXiv.2606.27443" }
+    ],
+    "creator": [
+      {
+        "@type": "Person",
+        "name": "Aryan Keluskar",
+        "url": "https://aryankeluskar.com",
+        "affiliation": { "@type": "Organization", "name": "Arizona State University" },
+        "sameAs": [
+          "https://orcid.org/0009-0000-4587-7955",
+          "https://scholar.google.com/citations?user=wVDeZtcAAAAJ"
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Amrita Bhattacharjee",
+        "url": "https://amritabh.github.io/",
+        "affiliation": { "@type": "Organization", "name": "Arizona State University" }
+      },
+      {
+        "@type": "Person",
+        "name": "Huan Liu",
+        "url": "https://faculty.engineering.asu.edu/huanliu/",
+        "affiliation": { "@type": "Organization", "name": "Arizona State University" },
+        "sameAs": [
+          "https://scholar.google.com/citations?user=Dzf46C8AAAAJ",
+          "https://dblp.org/pid/92/309-1.html"
+        ]
+      }
+    ],
+    "temporalCoverage": "2026",
+    "variableMeasured": [
+      "communication state phi",
+      "milestone count",
+      "agreement rate",
+      "Cohen's d"
+    ],
+    "keywords": "multi-agent LLM, personality prompting, agreeableness, MultiAgentBench, artifact-mediated buffering, bargaining agents",
+    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "isAccessibleForFree": true,
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://multi-agent-llm-teams.github.io/api/results.json"
+      }
+    ]
+  }
+  </script>
+
   <!-- Umami analytics -->
   <!-- src + website id are injected at deploy from GitHub Actions repo variables (see .github/workflows/pages.yml). A fork without those variables set tracks nothing. -->
   <script defer src="__UMAMI_SCRIPT_URL__" data-website-id="__UMAMI_WEBSITE_ID__"></script>
@@ -271,6 +340,7 @@
   </div>
 </nav>
 
+<main>
 
 <section class="hero">
   <div class="hero-body">
@@ -395,6 +465,14 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-centered">Key Findings</h2>
         <div class="content has-text-justified">
+          <blockquote>
+            <p><b>Bottom line:</b> the same low-agreeableness prompt shifts agent
+            communication identically in every domain (&phi; 0.44 &rarr; 0.93), but only
+            unstructured tasks see outcomes degrade. A structured code artifact buffers
+            the effect: coding milestones hold for 3 of 4 models (Cohen's <i>d</i> = 0.06
+            for Claude), research milestones fall by up to 66%, and bargaining agreement
+            collapses from ~40% to &le;1%.</p>
+          </blockquote>
           <p>
             <b>Communication always shifts.</b> Low agreeableness drives every model to a
             disagreement-dominated profile (exploration fraction <span class="dnerf">&phi; &asymp; 0.93</span>),
@@ -723,6 +801,12 @@
           while high-A approximately doubles it. The neutral-paraphrase condition reduces the effect
           but preserves the direction.
         </p>
+        <p class="has-text-centered" style="font-size:0.85em;">
+          Machine-readable copies of every table:
+          <a href="/api/results.json">/api/results.json</a> &middot;
+          paper metadata + BibTeX:
+          <a href="/api/paper.json">/api/paper.json</a>
+        </p>
       </div>
     </div>
 
@@ -841,6 +925,7 @@
   </div>
 </section>
 
+</main>
 
 <footer class="footer">
   <div class="container">

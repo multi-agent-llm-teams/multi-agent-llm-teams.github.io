@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://multi-agent-llm-teams.github.io/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -14,5 +14,11 @@
       <image:loc>https://multi-agent-llm-teams.github.io/static/images/og.jpg</image:loc>
       <image:title>When Does Personality Composition Matter for Multi-Agent LLM Teams? (COLM 2026)</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://multi-agent-llm-teams.github.io/press.md</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

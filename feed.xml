@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>When Does Personality Composition Matter for Multi-Agent LLM Teams?</title>
+  <subtitle>COLM 2026 paper project page — Aryan Keluskar, Amrita Bhattacharjee, Huan Liu (Arizona State University)</subtitle>
+  <id>https://multi-agent-llm-teams.github.io/</id>
+  <link href="https://multi-agent-llm-teams.github.io/"/>
+  <link rel="self" href="https://multi-agent-llm-teams.github.io/feed.xml"/>
+  <updated>2026-11-19T09:00:00Z</updated>
+  <author>
+    <name>Aryan Keluskar, Amrita Bhattacharjee, Huan Liu</name>
+    <uri>https://multi-agent-llm-teams.github.io/</uri>
+  </author>
+  <rights>Creative Commons Attribution-ShareAlike 4.0 International</rights>
+  <entry>
+    <title>When Does Personality Composition Matter for Multi-Agent LLM Teams?</title>
+    <id>https://multi-agent-llm-teams.github.io/</id>
+    <link href="https://multi-agent-llm-teams.github.io/"/>
+    <published>2026-06-25T00:00:00Z</published>
+    <updated>2026-11-19T09:00:00Z</updated>
+    <summary>Project page for the COLM 2026 paper. Personality prompts shift multi-agent LLM communication everywhere, but outcomes only degrade on unstructured tasks: structured code artifacts buffer the effect ("artifact-mediated buffering"), while research milestones drop up to 66% and bargaining agreement collapses from ~40% to ≤1% under low agreeableness. Full results tables, FAQ, citation info, and machine-readable data APIs.</summary>
+    <category term="multi-agent LLM"/>
+    <category term="personality prompting"/>
+    <category term="COLM 2026"/>
+  </entry>
+  <entry>
+    <title>Press kit — headline numbers and plain-English summary</title>
+    <id>https://multi-agent-llm-teams.github.io/press.md</id>
+    <link href="https://multi-agent-llm-teams.github.io/press.md"/>
+    <published>2026-10-31T00:00:00Z</published>
+    <updated>2026-10-31T00:00:00Z</updated>
+    <summary>Plain-English summary of the paper for journalists: what was tested, the headline numbers, and quotable findings.</summary>
+    <category term="press"/>
+  </entry>
+  <entry>
+    <title>Machine-readable paper data API</title>
+    <id>https://multi-agent-llm-teams.github.io/api/results.json</id>
+    <link href="https://multi-agent-llm-teams.github.io/api/results.json"/>
+    <published>2026-11-19T09:00:00Z</published>
+    <updated>2026-11-19T09:00:00Z</updated>
+    <summary>All result tables as structured JSON (communication state, cross-domain outcomes, bargaining acceptance), plus paper metadata with BibTeX at /api/paper.json. Public, no authentication.</summary>
+    <category term="dataset"/>
+    <category term="API"/>
+  </entry>
+</feed>

@@ -22,6 +22,11 @@ Paper: "When Does Personality Composition Matter for Multi-Agent LLM Teams?" by 
 - [OpenReview](https://openreview.net/forum?id=MS8jsgZC62)
 - [Press kit](https://multi-agent-llm-teams.github.io/press.md): plain-English summary and headline numbers for journalists.
 
+## Full content
+
+- [Complete site content in markdown](https://multi-agent-llm-teams.github.io/llms-full.txt): every section, results table, and FAQ answer as one markdown file, for LLM ingestion.
+- [Atom feed](https://multi-agent-llm-teams.github.io/feed.xml): site updates (results data, press kit, new endpoints).
+
 ## Machine-readable data and agent endpoints
 
 - [Paper metadata API](https://multi-agent-llm-teams.github.io/api/paper.json): JSON with title, authors, venue, identifiers, abstract, and BibTeX.
