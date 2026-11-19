@@ -1,0 +1,55 @@
+{
+  "paper": {
+    "title": "When Does Personality Composition Matter for Multi-Agent LLM Teams?",
+    "authors": [
+      {
+        "name": "Aryan Keluskar",
+        "affiliation": "School of Computing & AI, Arizona State University",
+        "url": "https://aryankeluskar.com"
+      },
+      {
+        "name": "Amrita Bhattacharjee",
+        "affiliation": "School of Computing & AI, Arizona State University",
+        "url": "https://amritabh.github.io/"
+      },
+      {
+        "name": "Huan Liu",
+        "affiliation": "School of Computing & AI, Arizona State University",
+        "url": "https://faculty.engineering.asu.edu/huanliu/"
+      }
+    ],
+    "venue": "Conference on Language Modeling (COLM 2026)",
+    "venue_location": "San Francisco, USA",
+    "venue_dates": "2026-10-06 to 2026-10-09",
+    "published_online": "2026-06-25",
+    "identifiers": {
+      "arxiv": "2606.27443",
+      "doi": "10.48550/arXiv.2606.27443",
+      "openreview": "MS8jsgZC62"
+    },
+    "abstract": "Personality prompting shapes how large language models communicate, yet whether those shifts change objective task outcomes has not been tested directly. We investigate whether personality composition matters for multi-agent team performance by manipulating personality traits across frontier LLMs on three task domains: structured coding, open-ended research collaboration, and competitive bargaining. We find that personality effects depend critically on task structure. In coding tasks, low agreeableness leads to large communication shifts that have little effect on milestone completion. In open-ended collaboration and bargaining, the same manipulation substantially degrades performance."
+  },
+  "links": {
+    "pdf": "https://arxiv.org/pdf/2606.27443",
+    "arxiv": "https://arxiv.org/abs/2606.27443",
+    "openreview": "https://openreview.net/forum?id=MS8jsgZC62",
+    "code": "https://github.com/multi-agent-llm-teams",
+    "project_page": "https://multi-agent-llm-teams.github.io/",
+    "press_kit": "https://multi-agent-llm-teams.github.io/press.md",
+    "llms_txt": "https://multi-agent-llm-teams.github.io/llms.txt"
+  },
+  "citation": {
+    "bibtex": "@article{keluskar2026personality,\n  author  = {Keluskar, Aryan and Bhattacharjee, Amrita and Liu, Huan},\n  title   = {When Does Personality Composition Matter for Multi-Agent LLM Teams?},\n  journal = {arXiv preprint arXiv:2606.27443},\n  year    = {2026},\n}",
+    "note": "Accepted at COLM 2026; cite the arXiv preprint unless citing the proceedings version."
+  },
+  "study": {
+    "models": ["Claude Sonnet 4.5", "GPT-4o", "Grok-3", "DeepSeek V3.1"],
+    "tasks": {
+      "coding": "3 agents, structured output, cooperative (MultiAgentBench)",
+      "research": "5 agents, unstructured output, cooperative (MultiAgentBench)",
+      "bargaining": "2 agents, unstructured output, competitive buyer-seller (MultiAgentBench)"
+    },
+    "personality_protocol": "Goldberg bipolar adjective markers for the Big Five, Serapio-Garcia et al. (2025) protocol; primary conditions low-A (level 2) and high-A (level 8) prepended to each agent's system prompt.",
+    "communication_measure": "Bales' Interaction Process Analysis adapted; communication state phi = fraction of acts devoted to exploration (questions, disagreements, suggestions) vs convergence (acknowledgments)."
+  }
+}

@@ -1,9 +1,6 @@
 # When Does Personality Composition Matter for Multi-Agent LLM Teams?
 
-Project page for the paper *"When Does Personality Composition Matter for Multi-Agent LLM Teams?"*
-by [Aryan Keluskar](https://aryankeluskar.com), [Amrita Bhattacharjee](https://amritabh.github.io/),
-and [Huan Liu](https://faculty.engineering.asu.edu/huanliu/) (School of Computing & AI, Arizona State
-University). Accepted to the Third Conference on Language Modeling (**COLM 2026**), San Francisco.
+Project page for the paper *"When Does Personality Composition Matter for Multi-Agent LLM Teams?"* by [Aryan Keluskar](https://aryankeluskar.com), [Amrita Bhattacharjee](https://amritabh.github.io/), and [Huan Liu](https://faculty.engineering.asu.edu/huanliu/) (School of Computing & AI, Arizona State University). Accepted to the Third Conference on Language Modeling (**COLM 2026**), San Francisco.
 
 **Site:** <https://multi-agent-llm-teams.github.io/> · **Press kit:** <https://multi-agent-llm-teams.github.io/press.md>
 
@@ -11,18 +8,12 @@ University). Accepted to the Third Conference on Language Modeling (**COLM 2026*
 
 ## TL;DR
 
-Personality prompts shift agent *communication* everywhere, but only change *outcomes* when the
-task is unstructured:
+Personality prompts shift agent *communication* everywhere, but only change *outcomes* when the task is unstructured:
 
-- **Coding (structured, cooperative):** low-agreeableness barely moves milestone completion
-  (Claude 12.1 → 12.4, d = 0.06) — the code artifact filters out process degradation
-  ("**artifact-mediated buffering**").
+- **Coding (structured, cooperative):** low-agreeableness barely moves milestone completion (Claude 12.1 → 12.4, d = 0.06) — the code artifact filters out process degradation ("**artifact-mediated buffering**").
 - **Research (unstructured, cooperative):** milestones drop up to **66%**.
-- **Bargaining (unstructured, competitive):** agreement collapses from ~40% to **≤1%**; high-A
-  roughly doubles it.
-- Only **agreeableness** matters (conscientiousness and openness ablations ≈ null), because
-  RLHF-trained models are already cooperative: personality prompting mainly induces adversarial
-  behavior, not collaboration.
+- **Bargaining (unstructured, competitive):** agreement collapses from ~40% to **≤1%**; high-A roughly doubles it.
+- Only **agreeableness** matters (conscientiousness and openness ablations ≈ null), because RLHF-trained models are already cooperative: personality prompting mainly induces adversarial behavior, not collaboration.
 
 ## Cite
 
@@ -41,7 +32,29 @@ task is unstructured:
 - [`press.md`](https://multi-agent-llm-teams.github.io/press.md) — press kit.
 - Structured data: `ScholarlyArticle` and `FAQPage` JSON-LD on the project page.
 
+## For AI agents (agent-readiness)
+
+The site publishes the full set of agent-discovery surfaces. Everything is public — no authentication exists (see [`auth.md`](https://multi-agent-llm-teams.github.io/auth.md)).
+
+| Surface | Path | Spec |
+|---|---|---|
+| Content Signals | `Content-Signal:` in [`robots.txt`](robots.txt) | [contentsignals.org](https://contentsignals.org/) |
+| ARD capability manifest | [`.well-known/ai-catalog.json`](.well-known/ai-catalog.json) | [ARD spec](https://agenticresourcediscovery.org/) |
+| API catalog | [`.well-known/api-catalog`](.well-known/api-catalog) | RFC 9727 |
+| Paper data API | [`api/paper.json`](api/paper.json), [`api/results.json`](api/results.json), [`api/status.json`](api/status.json) — described by [`api/openapi.json`](api/openapi.json) | OpenAPI 3.1 |
+| OAuth Protected Resource Metadata | [`.well-known/oauth-protected-resource`](.well-known/oauth-protected-resource) | RFC 9728 |
+| MCP server card | [`.well-known/mcp/server-card.json`](.well-known/mcp/server-card.json) | SEP-2127 |
+| Agent skills index | [`.well-known/agent-skills/index.json`](.well-known/agent-skills/index.json) | [Agent Skills Discovery RFC v0.2.0](https://github.com/cloudflare/agent-skills-discovery-rfc) |
+| WebMCP tools | [`static/js/webmcp.js`](static/js/webmcp.js) — registered via `document.modelContext` on page load | [WebMCP](https://webmachinelearning.github.io/webmcp/) |
+
+Two implementation notes:
+
+- GitHub Pages runs Jekyll over the deployed artifact (that is how `press.md` is also served rendered as `/press.html`). Jekyll drops dot-directories by default, so [`_config.yml`](_config.yml) sets `include: [.well-known]` to publish the `/.well-known/*` files. Delete that at your peril.
+- `Link` response headers, `Accept: text/markdown` negotiation, and DNS-AID records cannot be configured on `github.io` (no custom headers, no content negotiation, no DNS control). The `<link rel="...">` tags in `index.html` carry the equivalent discovery pointers in HTML, and `/llms.txt` + `press.md` serve raw Markdown.
+  A custom domain behind a configurable edge (e.g. Cloudflare) would be needed to close those three checks.
+
+When editing a skill under `.well-known/agent-skills/`, recompute its `sha256` digest (`shasum -a 256 .well-known/agent-skills/<name>/SKILL.md`) and update [`.well-known/agent-skills/index.json`](.well-known/agent-skills/index.json).
+
 ## Credits
 
-Website template adapted from [Nerfies](https://github.com/nerfies/nerfies.github.io), licensed
-under CC BY-SA 4.0.
+Website template adapted from [Nerfies](https://github.com/nerfies/nerfies.github.io), licensed under CC BY-SA 4.0.

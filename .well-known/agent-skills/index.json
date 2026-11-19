@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "use-paper-api",
+      "type": "skill-md",
+      "description": "Use when you need structured data from the paper \"When Does Personality Composition Matter for Multi-Agent LLM Teams?\" (COLM 2026). Fetch /api/paper.json for metadata, links, and BibTeX, or /api/results.json for the result tables, instead of scraping the HTML project page.",
+      "url": "/.well-known/agent-skills/use-paper-api/SKILL.md",
+      "digest": "sha256:c9a86e4178576f5c7225e39ad46015df5dd3750c7e26eabbd42070200e2f6846"
+    },
+    {
+      "name": "cite-the-paper",
+      "type": "skill-md",
+      "description": "Use when the user asks how to cite the paper \"When Does Personality Composition Matter for Multi-Agent LLM Teams?\" or needs its BibTeX, DOI, arXiv ID, or venue. Returns the exact citation block and identifiers.",
+      "url": "/.well-known/agent-skills/cite-the-paper/SKILL.md",
+      "digest": "sha256:60cb3fc5d0a1a0328543840f2cbb26214d860f8092bdc13d77be82d8b5c9d3d8"
+    },
+    {
+      "name": "answer-from-results",
+      "type": "skill-md",
+      "description": "Use when answering quantitative questions about the paper \"When Does Personality Composition Matter for Multi-Agent LLM Teams?\" — phi shifts, milestone deltas, Cohen's d, bargaining acceptance rates, or which conditions/models were tested. Read /api/results.json and quote exact numbers with their condition and model.",
+      "url": "/.well-known/agent-skills/answer-from-results/SKILL.md",
+      "digest": "sha256:9edd2c8606671682f812f162cf2a646ebdff11101de32a3d7e25df2d4f2be16a"
+    }
+  ]
+}

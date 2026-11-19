@@ -2,75 +2,120 @@
 # Policy: fully open. This is a research paper project page; search engines,
 # AI answer engines, and AI training crawlers are all welcome to index, quote,
 # and cite it.
+#
+# Content Signals (https://contentsignals.org/): how this site's content may be
+# used by AI systems. This site is deliberately fully open:
+#   search=yes    — classic search indexing (links + excerpts)
+#   ai-input=yes  — real-time grounding / RAG for generative answers
+#   ai-train=yes  — training and fine-tuning (the paper is released to be read,
+#                    used, and cited)
+# A bot that matches a named group below ignores the wildcard group entirely,
+# so every group repeats the same Content-Signal line.
 
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 # --- Search + answer engines (AI visibility) ---
 User-agent: Googlebot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: bingbot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Applebot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Bravebot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: DuckAssistBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: OAI-SearchBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Claude-SearchBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: PerplexityBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: YouBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Amzn-SearchBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: meta-webindexer
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: MistralAI-Index
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 # --- User-triggered fetchers (live answers about this paper) ---
 User-agent: ChatGPT-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Claude-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Perplexity-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: MistralAI-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: meta-externalfetcher
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Amzn-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 # --- AI training crawlers: allowed, deliberately ---
 # This work is released to be read, used, and cited.
 User-agent: GPTBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: ClaudeBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Google-Extended
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Applebot-Extended
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: CCBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: meta-externalagent
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Amazonbot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: MistralAI-Training
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: AI2Bot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: Bytespider
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: cohere-ai
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 User-agent: KimiBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
+# --- Discovery pointers ---
 Sitemap: https://multi-agent-llm-teams.github.io/sitemap.xml
+
+# Agentic Resource Discovery (https://agenticresourcediscovery.org/):
+# points AI agents at this site's capability manifest (MCP tools, APIs, skills).
+Agentmap: https://multi-agent-llm-teams.github.io/.well-known/ai-catalog.json

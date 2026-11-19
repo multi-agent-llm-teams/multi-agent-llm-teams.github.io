@@ -1,0 +1,40 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "io.github.multi-agent-llm-teams/paper-page",
+  "title": "Multi-Agent LLM Teams paper page",
+  "version": "1.0.0",
+  "description": "Browser tools exposing the COLM 2026 personality-composition paper's data.",
+  "websiteUrl": "https://multi-agent-llm-teams.github.io/",
+  "repository": {
+    "url": "https://github.com/multi-agent-llm-teams/multi-agent-llm-teams.github.io",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://multi-agent-llm-teams.github.io/static/images/favicon.webp",
+      "mimeType": "image/webp",
+      "sizes": "any"
+    }
+  ],
+  "_meta": {
+    "io.github.multi-agent-llm-teams/transport": {
+      "type": "web-mcp",
+      "url": "https://multi-agent-llm-teams.github.io/",
+      "summary": "This site has no streamable-HTTP MCP endpoint. Its tools are registered client-side via the WebMCP API (document.modelContext.registerTool, https://webmachinelearning.github.io/webmcp/) when an agent loads the page in a WebMCP-capable browser. No authentication is required."
+    }
+  },
+  "serverInfo": {
+    "name": "Multi-Agent LLM Teams paper page",
+    "version": "1.0.0"
+  },
+  "url": "https://multi-agent-llm-teams.github.io/",
+  "transport": {
+    "type": "web-mcp",
+    "url": "https://multi-agent-llm-teams.github.io/"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  }
+}
