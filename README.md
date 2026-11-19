@@ -49,7 +49,8 @@ The site publishes the full set of agent-discovery surfaces. Everything is publi
 
 Two implementation notes:
 
-- The deployment ships a `.nojekyll` file, so GitHub Pages serves the repository verbatim: dot-directories like `/.well-known/` are served as-is and Markdown files (`auth.md`, `press.md`, the `SKILL.md` files) are served raw as `text/markdown` instead of being converted. [`_config.yml`](_config.yml) is kept as a fallback for the case where `.nojekyll` is ever removed (Jekyll drops dot-directories unless `include: [.well-known]` is set).
+- The site deploys through the `Deploy to GitHub Pages` workflow (Pages build type: **workflow**), which serves the repository verbatim — dot-directories like `/.well-known/` ship as-is and Markdown files (`auth.md`, `press.md`, the `SKILL.md` files) are served raw as `text/markdown`. [`_config.yml`](_config.yml) is kept as a fallback for the case where the site is ever switched back to legacy branch serving, where Jekyll would otherwise drop dot-directories unless `include: [.well-known]` is set.
+- The workflow injects umami analytics at deploy time: set the `UMAMI_WEBSITE_ID` repo Actions variable (`gh variable set UMAMI_WEBSITE_ID --body "<id>"`) — and `UMAMI_SCRIPT_URL` if self-hosting — to switch tracking on. Until then the whole analytics block is stripped from the deployed HTML and nothing loads or tracks.
 - `Link` response headers, `Accept: text/markdown` negotiation, and DNS-AID records cannot be configured on `github.io` (no custom headers, no content negotiation, no DNS control). The `<link rel="...">` tags in `index.html` carry the equivalent discovery pointers in HTML, and `/llms.txt` + `llms-full.txt` + `press.md` serve raw Markdown.
   A custom domain behind a configurable edge (e.g. Cloudflare) would be needed to close those three checks.
 

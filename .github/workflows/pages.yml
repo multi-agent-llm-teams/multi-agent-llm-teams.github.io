@@ -23,18 +23,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Inject umami config from per-repo Actions variables. A fork that hasn't
-      # set UMAMI_WEBSITE_ID gets an empty id and therefore tracks nothing —
-      # analytics is tied to this project's environment, never to a domain.
+      # Inject umami config from per-repo Actions variables. A repo that hasn't
+      # set UMAMI_WEBSITE_ID gets the whole analytics block stripped at deploy
+      # time — no placeholder URL ever ships, and nothing tracks.
       - name: Inject umami config
         env:
           UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
           UMAMI_SCRIPT_URL: ${{ vars.UMAMI_SCRIPT_URL }}
         run: |
-          SCRIPT_URL="${UMAMI_SCRIPT_URL:-https://cloud.umami.is/script.js}"
-          find . -name '*.html' -not -path './.git/*' -print0 | xargs -0 -r sed -i \
-            -e "s#__UMAMI_WEBSITE_ID__#${UMAMI_WEBSITE_ID}#g" \
-            -e "s#__UMAMI_SCRIPT_URL__#${SCRIPT_URL}#g"
+          if [ -n "${UMAMI_WEBSITE_ID}" ]; then
+            SCRIPT_URL="${UMAMI_SCRIPT_URL:-https://cloud.umami.is/script.js}"
+            find . -name '*.html' -not -path './.git/*' -print0 | xargs -0 -r sed -i \
+              -e "s#__UMAMI_WEBSITE_ID__#${UMAMI_WEBSITE_ID}#g" \
+              -e "s#__UMAMI_SCRIPT_URL__#${SCRIPT_URL}#g"
+          else
+            find . -name '*.html' -not -path './.git/*' -print0 | xargs -0 -r sed -i \
+              -e '/<!-- Umami analytics -->/,/<!-- \/Umami analytics -->/d'
+          fi
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
